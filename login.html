@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Modar | تسجيل الدخول</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
+</head><body>
+
+<div class="top-banner"><img src="assets/img/svg/logo-bottom.svg1.svg" alt=""></div>
+<header><div class="container header-row"><nav class="site-nav"><ul>
+<li><a href="index.html">الرئيسية</a></li>
+<li><a href="about.html">من نحن</a></li>
+<li><a href="analytics.html">التحليلات</a></li>
+<li><a href="support.html">الدعم</a></li>
+</ul></nav></div></header>
+
+<main class="auth-wrap">
+  <div class="auth-card">
+    <h1 class="auth-title">مرحبًا بعودتك</h1>
+    <p class="auth-subtitle">سجّل الدخول للمتابعة إلى Modar.</p>
+
+    <form class="auth-form" onsubmit="return go(event)">
+      <label class="label">اسم المستخدم</label>
+      <input class="input" type="text" placeholder="أدخل اسم المستخدم" required>
+      <label class="label">كلمة المرور</label>
+      <input class="input" type="password" placeholder="أدخل كلمة المرور" required>
+      <button class="auth-btn" type="submit">تسجيل الدخول</button>
+    </form>
+
+    <div class="auth-or"><span>أو</span></div>
+    <div style="display:flex;justify-content:center">
+      <a class="btn-gray" href="#" onclick="alert('لاحقًا: اربط Google Sign-In بإضافة Client ID');return false;">تسجيل عبر Google</a>
+    </div>
+
+    <p class="auth-note">بتسجيلك الدخول فأنت توافق على <a href="privacy.html">سياسة الخصوصية</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-left"><img src="assets/img/svg/roshn.svg" alt=""><img src="assets/img/svg/tuwaiq.svg" alt=""></div>
+      <div class="footer-center"><img src="assets/img/svg/1-Kittl.svg" alt=""><div class="brand">Modar</div></div>
+      <nav class="footer-right"><a href="about.html">من نحن</a><a href="support.html">الدعم</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></nav>
+    </div>
+    <div class="footer-copy">MODAR® 2025 جميع الحقوق محفوظة — AIMS</div>
+  </div>
+</footer>
+
+<script>function go(e){e.preventDefault();location.href='analytics.html';return false;}</script>
+</body></html>

@@ -1,0 +1,88 @@
+/* ألوان النظام */
+:root{
+  --ink:#19183B;        /* هيدر/فوتر */
+  --pill:#708993;       /* أزرار التبويب */
+  --hero:#E7F2EF;       /* مساحة الهيرو */
+  --panel:#EAF5F2;
+  --stroke:#D9E7E3;
+  --text:#19183B;
+  --bg:#F2F4F6;
+}
+
+/* أساسيات */
+*{box-sizing:border-box}
+html{font-family:"Cairo",sans-serif;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.8}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1180px,92%);margin-inline:auto}
+
+/* شريط علوي وشعار أعلى اليمين */
+.top-banner{position:relative;background:var(--ink);height:56px}
+.logo-top{
+  position:absolute; right:22px; top:8px;
+  height:40px; filter:brightness(10); opacity:.95;
+}
+
+/* الهيدر */
+header{background:var(--ink);color:#fff}
+.header-row{display:flex;align-items:center;justify-content:center;padding:10px 0}
+.site-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:14px;flex-wrap:wrap}
+.site-nav a{
+  background:var(--pill); color:#fff; padding:8px 18px; border-radius:999px;
+  font-weight:800; box-shadow:0 1px 0 rgba(0,0,0,.15) inset;
+}
+.site-nav a.active{outline:2px solid rgba(231,242,239,.55)}
+.site-nav a:hover{filter:brightness(1.06)}
+
+/* إطار الصفحة */
+.page-wrap{background:var(--hero);min-height:calc(100vh - 220px)}
+.section{padding:36px 0;border-top:1px solid var(--stroke)}
+
+/* Hero */
+.hero{display:grid;place-items:center;text-align:center;padding:72px 16px}
+.hero-card{
+  background:rgba(255,255,255,.25);
+  border:1px solid var(--stroke);
+  border-radius:8px;
+  padding:34px 26px 30px;
+  width:min(860px,92%);
+}
+.hero-logo{
+  width:clamp(300px,34vw,420px);  /* تكبير الشعار الأوسط */
+  margin:10px auto 18px;
+  filter:brightness(.18);
+}
+.hero-title{font-size:clamp(34px,4vw,46px);margin:0 0 6px;font-weight:800}
+.btn-gray{
+  background:#A8B3BA;color:#fff;border:0;border-radius:28px;
+  padding:10px 22px;font-weight:800;display:inline-block;margin-top:10px;
+}
+
+/* نص لماذا مدار */
+.about-text{margin-top:10px}
+
+/* Footer */
+footer{background:var(--ink);color:#fff;padding:22px 0}
+.footer-wrap{width:min(1180px,92%);margin-inline:auto}
+.footer-top{
+  display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;
+  gap:24px;
+}
+.footer-left{display:flex;align-items:center;gap:32px;justify-content:flex-start}
+.partner-logo{height:70px;opacity:.95}   /* تكبير شعاري ROSHN/Tuwaiq */
+
+.footer-center{display:flex;flex-direction:column;align-items:center;gap:6px}
+.footer-logo{height:90px;opacity:.95}    /* تكبير شعار Modar في الوسط */
+.copy{font-weight:800;opacity:.9;margin-top:4px;text-align:center}
+
+.footer-right{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.footer-right a{color:#fff;font-weight:800}
+.footer-right a:hover{text-decoration:underline}
+
+@media (max-width:900px){
+  .footer-top{grid-template-columns:1fr;gap:16px;text-align:center}
+  .footer-left{justify-content:center}
+  .footer-right{align-items:center}
+  .logo-top{right:12px; height:36px}
+}

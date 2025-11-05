@@ -1,21 +1,52 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Modar | المعاونون</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modar | الصيانة</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-</head><body>
-
-<div data-include="assets/partials/header.html"></div>
-
+<link rel="stylesheet" href="assets/css/style.css?v=22">
+</head>
+<body>
+<header>
+<div class="container header-row">
+<nav class="site-nav">
+<ul>
+<li><a href="index.html">الرئيسية</a></li>
+<li class="nav-logo"><a href="index.html"><img src="assets/img/svg/logo-2.svg" alt="Modar"></a></li>
+<li><a href="properties.html">عقاراتي</a></li>
+<li><a href="chat.html">محادثاتي</a></li>
+<li><a href="analytics.html">التحليلات</a></li>
+<li><a href="assistants.html">المعاون</a></li>
+<li><a href="tenants.html">المستأجرين</a></li>
+<li><a class="active" href="maintenance.html">الصيانة</a></li>
+</ul>
+</nav>
+</div>
+</header>
 <main class="page-wrap">
-  <section class="section container">
-    <h1 class="page-title">المعاونون</h1>
-    <p>أضف وأدر المعاونين هنا…</p>
-  </section>
+<section class="section">
+<div class="container">
+<h1>طلبات الصيانة</h1>
+<div class="form-grid">
+<select><option>اختر العقار</option><option>عمارة الشوقية</option><option>برج جدة للأعمال</option></select>
+<input placeholder="الوحدة (مثال: 2B)">
+<select><option>الفئة</option><option>سباكة</option><option>كهرباء</option><option>نظافة</option><option>بوية</option></select>
+<input placeholder="الوصف">
+<button class="btn">إرسال الطلب</button>
+</div>
+<div class="list" style="margin-top:16px">
+<div class="item"><div><b>#1102</b> – تسرب ماء <span class="chip bad">متأخر</span><div class="muted">عمارة الشوقية — 2B — سباكة</div></div><span class="pill">new</span></div>
+</div>
+</div>
+</section>
 </main>
-
-<div data-include="assets/partials/footer.html"></div>
-
-<script src="assets/js/include.js"></script>
-</body></html>
+<footer> <!-- نفس فوتر index -->
+<div class="footer-container">
+<div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div>
+<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
+<div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,21 +1,61 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Modar | المعاونون</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modar | المعاون</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-</head><body>
-
-<div data-include="assets/partials/header.html"></div>
-
+<link rel="stylesheet" href="assets/css/style.css?v=22">
+</head>
+<body>
+<header>
+<div class="container header-row">
+<nav class="site-nav">
+<ul>
+<li><a href="index.html">الرئيسية</a></li>
+<li class="nav-logo"><a href="index.html"><img src="assets/img/svg/logo-2.svg" alt="Modar"></a></li>
+<li><a href="properties.html">عقاراتي</a></li>
+<li><a href="chat.html">محادثاتي</a></li>
+<li><a href="analytics.html">التحليلات</a></li>
+<li><a class="active" href="assistants.html">المعاون</a></li>
+<li><a href="tenants.html">المستأجرين</a></li>
+<li><a href="maintenance.html">الصيانة</a></li>
+</ul>
+</nav>
+</div>
+</header>
 <main class="page-wrap">
-  <section class="section container">
-    <h1 class="page-title">المعاونون</h1>
-    <p>أضف وأدر المعاونين هنا…</p>
-  </section>
+<section class="section">
+<div class="container">
+<h1>المعاون</h1>
+<div class="split">
+<div class="chat-box">
+<div id="chat-log" class="chat-log"></div>
+<div class="chat-input">
+<input id="q" placeholder="اسأل مُدار…" />
+<button class="btn" onclick="send()">إرسال</button>
+</div>
+</div>
+<aside class="side-panel">
+<h3>أوامر سريعة</h3>
+<div class="quick">
+<button class="btn-gray" onclick="ask('رتّب الطلبات حسب المتأخرة')">رتّب المتأخرة</button>
+<button class="btn-gray" onclick="ask('ملخص KPI')">ملخص KPI</button>
+</div>
+</aside>
+</div>
+</div>
+</section>
 </main>
-
-<div data-include="assets/partials/footer.html"></div>
-
-<script src="assets/js/include.js"></script>
-</body></html>
+<footer> <!-- نفس فوتر index -->
+<div class="footer-container">
+<div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div>
+<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
+<div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
+</div>
+</footer>
+<script>function send(){const i=document.getElementById('q'); if(!i.value.trim()) return; ask(i.value); i.value='';}
+function ask(t){const log=document.getElementById('chat-log'); const me=document.createElement('div'); me.className='bubble me'; me.textContent=t; log.appendChild(me); const bot=document.createElement('div'); bot.className='bubble bot'; bot.textContent='(رد تجريبي) سيتم لاحقًا ربطه بالمساعد.'; log.appendChild(bot); log.scrollTop=log.scrollHeight;}
+</script>
+</body>
+</html>

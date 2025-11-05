@@ -5,84 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modar | الصفحة الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=30">
+  <link rel="stylesheet" href="assets/css/style.css?v=22">
 </head>
 <body>
 
-  <!-- شريط علوي: شعار صغير أعلى اليمين -->
-  <div class="top-banner">
-    <img src="assets/img/svg/logo-2.svg" alt="Modar" class="logo-top" />
+<!-- شريط التنقل -->
+<header>
+  <div class="container header-row">
+    <nav class="site-nav">
+      <ul>
+        <li><a class="active" href="index.html">الرئيسية</a></li>
+        <li class="nav-logo">
+          <a href="index.html" aria-label="الصفحة الرئيسية">
+            <img src="assets/img/svg/logo-2.svg" alt="Modar Logo">
+          </a>
+        </li>
+        <li><a href="properties.html">عقاراتي</a></li>
+        <li><a href="chat.html">محادثاتي</a></li>
+        <li><a href="analytics.html">التحليلات</a></li>
+        <li><a href="assistants.html">المعاون</a></li>
+        <li><a href="tenants.html">المستأجرين</a></li>
+        <li><a href="maintenance.html">الصيانة</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <!-- تنقّل رئيسي -->
-  <header>
-    <div class="container header-row">
-      <nav class="site-nav" aria-label="التنقل">
-        <ul>
-          <li><a class="active" href="index.html">الرئيسية</a></li>
-          <li><a href="properties.html">عقاراتي</a></li>
-          <li><a href="chat.html">محادثاتي</a></li>
-          <li><a href="analytics.html">التحليلات</a></li>
-          <li><a href="assistants.html">المعاون</a></li>
-          <li><a href="tenants.html">المستأجرين</a></li>
-          <li><a href="maintenance.html">الصيانة</a></li>
-        </ul>
-      </nav>
+<!-- المحتوى الرئيسي -->
+<main class="page-wrap">
+  <!-- القسم الرئيسي -->
+  <section class="hero">
+    <div class="hero-card">
+      <img src="assets/img/svg/logo-1.svg" alt="شعار مدار" class="hero-logo">
+      <h1>Modar</h1>
+      <a href="login.html" class="btn-gray">تسجيل الدخول</a>
     </div>
-  </header>
+  </section>
 
-  <!-- المحتوى -->
-  <main class="page-wrap">
-    <section class="hero">
-      <div class="hero-card">
-        <!-- شعار كبير في الوسط -->
-        <img src="assets/img/svg/logo-1.svg" alt="Modar" class="hero-logo" />
-        <h1 class="hero-title">Modar</h1>
-        <!-- تم حذف النص أسفل العنوان حسب طلبك -->
-        <a href="login.html" class="btn-gray">تسجيل الدخول</a>
-      </div>
-    </section>
-
-    <!-- لماذا مدار (يمكنك إبقاء النص أو تعديله لاحقًا) -->
-    <section class="section">
-      <div class="container">
-        <h2>لماذا مدار</h2>
-        <p class="about-text">
-          مدار منصة ذكية ومتكاملة لإدارة العقارات، مصممة لتمكين 85% من مالكي العقارات الذين يديرون عقاراتهم بشكل مستقل من إدارة أعمالهم بسهولة وموثوقية واحترافية أكبر.
-          تستبدل الأساليب المجزأة بنظام موحد يجمع التحليلات المالية، الصيانة، التواصل مع المستأجرين، وإدارة الفريق في مكان واحد.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <!-- الفوتر بالتنسيق المطلوب -->
-  <footer>
-    <div class="footer-wrap">
-      <div class="footer-top">
-        <!-- يسار: شعارات الشركاء -->
-        <div class="footer-left">
-          <img src="assets/img/svg/roshn.svg"  alt="ROSHN Group" class="partner-logo">
-          <img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq Academy" class="partner-logo">
-        </div>
-
-        <!-- وسط: شعار مدار كبير -->
-        <div class="footer-center">
-          <img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo">
-          <p>مدار حيث يُدار العقار</p>
-          <p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p>
-        </div>
-
-        <!-- يمين: الروابط -->
-        <nav class="footer-right" aria-label="روابط">
-          <a href="support.html">الدعم</a>
-          <a href="about.html">من نحن</a>
-          <a href="privacy.html#security">أمن المعلومات</a>
-          <a href="privacy.html#faq">الأسئلة الشائعة</a>
-          <a href="privacy.html">سياسة الخصوصية</a>
-        </nav>
-      </div>
+  <!-- لماذا مدار -->
+  <section class="section">
+    <div class="container">
+      <h2>لماذا مدار:</h2>
+      <p class="about-text">
+        مدار منصة ذكية ومتكاملة لإدارة العقارات، مصممة لتمكين 85% من مالكي العقارات الذين يديرون عقاراتهم بشكل مستقل من إدارة أعمالهم بسهولة وموثوقية واحترافية أكبر.
+        يهدف التطبيق إلى استبدال الأساليب التقليدية المجزأة مثل الدفاتر المالية وجداول إكسل بنظام موحد يجمع كل ما يحتاجه المالك لإدارة عقاراته في مكان واحد.
+        من خلال مدار، يمكن للمالكين تحليل الأداء المالي باستخدام مخططات وجداول تفاعلية، ومتابعة أعمال الصيانة، والتواصل مباشرةً مع المستأجرين،
+        وإضافة مساعدين للمساعدة في الإدارة، كل ذلك من خلال لوحة تحكم ذكية وسهلة الاستخدام.
+      </p>
+      <p class="about-text">
+        تركز مدار على تعزيز الكفاءة الاقتصادية من خلال تقليل الخسائر الناتجة عن الفوضى وتجزئة البيانات،
+        مع تحسين عوائد كل عقار من خلال التتبع الدقيق للإيرادات والنفقات، إلى جانب تذكيرات ذكية بالتواريخ والمهام المهمة.
+        كما توفر المنصة تحليلات دقيقة وتحديثات فورية، مما يُمكّن المالكين من اتخاذ قرارات مالية واستثمارية مدروسة بناءً على بيانات حقيقية.
+      </p>
     </div>
-  </footer>
+  </section>
+</main>
+
+<!-- الفوتر -->
+<footer>
+  <div class="footer-container">
+    <!-- يسار: شعارات -->
+    <div class="footer-left">
+      <img src="assets/img/svg/roshn.svg" alt="ROSHN Group">
+      <img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq Academy">
+    </div>
+
+    <!-- وسط: شعار ونص -->
+    <div class="footer-center">
+      <img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo">
+      <p>مدار حيث يُدار العقار</p>
+      <p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p>
+    </div>
+
+    <!-- يمين: روابط (قائمة طولية) -->
+    <div class="footer-right">
+      <a href="support.html">الدعم</a>
+      <a href="about.html">من نحن</a>
+      <a href="privacy.html#security">أمن المعلومات</a>
+      <a href="privacy.html#faq">الأسئلة الشائعة</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

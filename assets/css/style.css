@@ -1,88 +1,242 @@
-/* ألوان النظام */
-:root{
-  --ink:#19183B;        /* هيدر/فوتر */
-  --pill:#708993;       /* أزرار التبويب */
-  --hero:#E7F2EF;       /* مساحة الهيرو */
-  --panel:#EAF5F2;
-  --stroke:#D9E7E3;
-  --text:#19183B;
-  --bg:#F2F4F6;
+/* 🎨 ألوان لوحة مدار الجديدة */
+:root {
+  --color-dark: #19183B;   /* غامق جداً - للهيدر والفوتر */
+  --color-mid: #708993;    /* لون متوسط */
+  --color-light: #A1C2BD;  /* فاتح - للخلفية */
+  --color-bg: #E7F2EF;     /* أفتح لون - للخلفية العامة */
+  --text-dark: #1A1A1A;
+  --text-light: #ffffff;
 }
 
-/* أساسيات */
-*{box-sizing:border-box}
-html{font-family:"Cairo",sans-serif;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);line-height:1.8}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
-.container{width:min(1180px,92%);margin-inline:auto}
 
-/* شريط علوي وشعار أعلى اليمين */
-.top-banner{position:relative;background:var(--ink);height:56px}
-.logo-top{
-  position:absolute; right:22px; top:8px;
-  height:40px; filter:brightness(10); opacity:.95;
+/* خلفية الصفحة العامة */
+body {
+  background: var(--color-bg);
+  color: var(--text-dark);
+  font-family: "Cairo", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* الهيدر */
-header{background:var(--ink);color:#fff}
-.header-row{display:flex;align-items:center;justify-content:center;padding:10px 0}
-.site-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:14px;flex-wrap:wrap}
-.site-nav a{
-  background:var(--pill); color:#fff; padding:8px 18px; border-radius:999px;
-  font-weight:800; box-shadow:0 1px 0 rgba(0,0,0,.15) inset;
-}
-.site-nav a.active{outline:2px solid rgba(231,242,239,.55)}
-.site-nav a:hover{filter:brightness(1.06)}
 
-/* إطار الصفحة */
-.page-wrap{background:var(--hero);min-height:calc(100vh - 220px)}
-.section{padding:36px 0;border-top:1px solid var(--stroke)}
-
-/* Hero */
-.hero{display:grid;place-items:center;text-align:center;padding:72px 16px}
-.hero-card{
-  background:rgba(255,255,255,.25);
-  border:1px solid var(--stroke);
-  border-radius:8px;
-  padding:34px 26px 30px;
-  width:min(860px,92%);
+/* ===================== */
+/* 🔹 الشعار العلوي */
+.top-banner {
+  background: var(--color-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0 30px; /* زيدنا المسافات لتوازن الشكل */
 }
-.hero-logo{
-  width:clamp(300px,34vw,420px);  /* تكبير الشعار الأوسط */
-  margin:10px auto 18px;
-  filter:brightness(.18);
+.logo-top {
+  height: clamp(64px, 10vw, 100px); /* ✅ تكبير الشعار */
+  width: auto;
+  transition: transform 0.3s ease;
 }
-.hero-title{font-size:clamp(34px,4vw,46px);margin:0 0 6px;font-weight:800}
-.btn-gray{
-  background:#A8B3BA;color:#fff;border:0;border-radius:28px;
-  padding:10px 22px;font-weight:800;display:inline-block;margin-top:10px;
+.logo-top:hover {
+  transform: scale(1.05); /* تأثير ناعم عند المرور */
 }
 
-/* نص لماذا مدار */
-.about-text{margin-top:10px}
 
-/* Footer */
-footer{background:var(--ink);color:#fff;padding:22px 0}
-.footer-wrap{width:min(1180px,92%);margin-inline:auto}
-.footer-top{
-  display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;
-  gap:24px;
+/* ===================== */
+/* 🔹 شريط التنقل */
+header {
+  background: var(--color-dark);
+  padding: 10px 0;
+  border-bottom: 0; /* توحيد اللونين العلوية باللون الغامق بدون حدود */
 }
-.footer-left{display:flex;align-items:center;gap:32px;justify-content:flex-start}
-.partner-logo{height:70px;opacity:.95}   /* تكبير شعاري ROSHN/Tuwaiq */
-
-.footer-center{display:flex;flex-direction:column;align-items:center;gap:6px}
-.footer-logo{height:90px;opacity:.95}    /* تكبير شعار Modar في الوسط */
-.copy{font-weight:800;opacity:.9;margin-top:4px;text-align:center}
-
-.footer-right{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.footer-right a{color:#fff;font-weight:800}
-.footer-right a:hover{text-decoration:underline}
-
-@media (max-width:900px){
-  .footer-top{grid-template-columns:1fr;gap:16px;text-align:center}
-  .footer-left{justify-content:center}
-  .footer-right{align-items:center}
-  .logo-top{right:12px; height:36px}
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
 }
+.site-nav li {
+  display: inline-flex;
+}
+.site-nav .nav-logo a { padding: 0; }
+.site-nav .nav-logo img { height: 44px; width: auto; display: block; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--text-light);
+}
+.site-nav a.active {
+  background: var(--color-mid);
+  color: #fff;
+}
+.site-nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* شاشات صغيرة */
+@media (max-width: 720px) {
+  .site-nav ul {
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+}
+
+
+/* ===================== */
+/* 🔹 القسم الرئيسي */
+.hero {
+  background: var(--color-bg);
+  text-align: center;
+  padding: 60px 20px;
+}
+.hero-card {
+  background: var(--color-light);
+  border: 2px solid var(--color-mid);
+  border-radius: 18px;
+  display: inline-block;
+  padding: 40px 60px;
+  color: var(--color-dark);
+}
+.hero-logo {
+  height: clamp(120px, 14vw, 160px);
+  width: auto;
+  margin-bottom: 10px;
+}
+.auth-logo {
+  height: clamp(64px, 8vw, 96px);
+  display: block;
+  margin: 0 auto 8px;
+}
+.btn-gray {
+  background: var(--color-dark);
+  color: var(--text-light);
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
+/* ===================== */
+/* 🔹 قسم لماذا مدار */
+.section {
+  background: var(--color-bg);
+  color: var(--color-dark);
+  padding: 40px 0;
+}
+.section h2 {
+  color: var(--color-dark);
+  text-align: right;
+}
+.section p {
+  color: #2e2e2e;
+}
+
+
+/* ===================== */
+/* 🔹 الفوتر - الروابط يسار / الشعارات يمين / الشعار والنص وسط */
+footer {
+  background-color: var(--color-dark);
+  color: var(--text-light);
+  padding: 24px 0;                 /* رفع أسفل الصفحة بتقليل الارتفاع */
+  border-top: 0;                   /* محاذاة كاملة مع لون الفوتر الغامق */
+}
+
+.footer-container {
+  display: flex;
+  align-items: flex-end;          /* النصوص أسفل الشعارات */
+  justify-content: space-between; /* توزيع يمين ويسار */
+  gap: 40px;
+  width: min(1200px, 92vw);
+  margin: auto;
+}
+
+/* ✅ يسار: روابط (قائمة طولية) */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;        /* يسار الحاوية */
+  gap: 8px;
+  order: 1;                       /* يسار الحاوية */
+}
+.footer-right a {
+  color: var(--text-light);        /* توافق اللون مع شريط الفوتر الغامق */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+/* ✅ يمين: الشعارات (ROSHN + Tuwaiq) */
+.footer-left {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;      /* يمين الحاوية */
+  gap: 20px;
+  order: 3;                       /* يمين الحاوية */
+}
+.footer-left img {
+  height: clamp(36px, 6vw, 56px);
+  width: auto;
+  transition: transform 0.3s ease;
+  transform: translateY(-4px); /* رفع ثابت خفيف للأعلى */
+}
+.footer-left img:hover { transform: translateY(-6px); }
+
+/* ✅ وسط: شعار Modar + النصوص */
+.footer-center {
+  text-align: left;
+  order: 2;
+  display: flex;                  /* ترتيب عمودي داخلي */
+  flex-direction: column;
+  align-items: center;
+}
+.footer-logo {
+  height: clamp(96px, 12vw, 140px);
+  width: auto;
+  margin-bottom: 6px;
+}
+.footer-center p {
+  margin: 4px 0;
+  color: #E7F2EF;
+  font-size: 0.95rem;
+}
+.copy {
+  color: #A1C2BD;
+  font-size: 0.8rem;              /* صغير وواضح في الأسفل */
+  font-weight: 300;               /* خط رفيع */
+  margin-top: 8px;                /* مسافة بسيطة للأعلى */
+}
+
+/* ✅ روابط (اختياري - يمكن تفعيلها لاحقًا) */
+/* ملاحظة: لا نخفي الروابط، فقط بدّلنا ترتيبها */
+
+/* تجاوب الموبايل */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  /* إعادة ضبط الترتيب في الموبايل ليظهر بشكل متتابع ومركزي */
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    order: 0;
+    justify-content: center;
+    text-align: center;
+  }
+  .footer-left {
+    justify-content: center;
+  }
+  .footer-center {
+    text-align: center;
+  }
+} 

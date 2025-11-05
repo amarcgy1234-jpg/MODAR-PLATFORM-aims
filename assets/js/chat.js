@@ -14,6 +14,13 @@
   const inputEl = $('#chat-text');
   const btnSend = $('#btn-send');
   const btnAdd = $('#btn-add');
+  const noticeEl = $('#chat-notice');
+  const nameMuh = $('#name-muhammed');
+  const msgMuh = $('#msg-muhammed');
+  const avatarMuh = $('#avatar-muhammed');
+  const nameAbd = $('#name-abdulkarim');
+  const msgAbd = $('#msg-abdulkarim');
+  const avatarAbd = $('#avatar-abdulkarim');
   const DRAFT_KEY = 'modar-chat-draft';
 
   function appendMsg(who, text){
@@ -34,7 +41,7 @@
     }catch(err){
       console.warn(err);
       // minimal safe fallback
-      bindData({ participant:{name:'محمد',avatar:'assets/img/Muhammed.jpg'}, primary:'', highlight:'', messages:[] });
+      bindData({ participant:{name:'محمد',avatar:'assets/img/Muhammed.jpg'}, primary:'', highlight:'', messages:[], chatMeta:{notice:''}, threads:[] });
     }
   }
 
@@ -47,6 +54,21 @@
     // primary & highlight
     if(primaryEl) primaryEl.textContent = d?.primary || '';
     if(highlightEl) highlightEl.textContent = d?.highlight || '';
+    // notice
+    if(noticeEl) noticeEl.textContent = d?.chatMeta?.notice || '';
+    // first two conversation cards from threads
+    const t0 = d?.threads?.[0];
+    const t1 = d?.threads?.[1];
+    if(t0){
+      if(nameMuh) nameMuh.textContent = t0.name||'';
+      if(msgMuh) msgMuh.textContent = t0.preview||'';
+      if(avatarMuh){ avatarMuh.src = t0.avatar||avatarMuh.src; avatarMuh.alt = t0.name||''; }
+    }
+    if(t1){
+      if(nameAbd) nameAbd.textContent = t1.name||'';
+      if(msgAbd) msgAbd.textContent = t1.preview||'';
+      if(avatarAbd){ avatarAbd.src = t1.avatar||avatarAbd.src; avatarAbd.alt = t1.name||''; }
+    }
     // thread
     threadEl.innerHTML = '';
     (d?.messages||[]).forEach(m=> appendMsg(m.who, m.text));

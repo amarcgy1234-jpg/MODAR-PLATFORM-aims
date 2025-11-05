@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modar | الصفحة الرئيسية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=22">
+  <link rel="stylesheet" href="assets/css/style.css?v=modar">
 </head>
 <body>
 
@@ -42,19 +42,49 @@
     </div>
   </section>
 
-  <!-- لماذا مدار -->
-  <section class="about-modar" aria-labelledby="about-title">
-    <div class="about-inner">
-      <h2 id="about-title">لماذا مدار؟</h2>
-      <div class="about-body">
-        <p>
-          مدار منصة ذكية ومتكاملة لإدارة العقارات، مصممة لتمكين 85% من مالكي العقارات الذين يديرون عقاراتهم بشكل مستقل من إدارة أعمالهم بسهولة وموثوقية واحترافية أكبر. يهدف التطبيق إلى استبدال الأساليب التقليدية المجزأة مثل الدفاتر المالية وجداول إكسل بنظام موحد يجمع كل ما يحتاجه المالك لإدارة عقاراته في مكان واحد.
-        </p>
-        <p>
-          من خلال مدار، يمكن للمالكين تحليل الأداء المالي باستخدام مخططات وجداول تفاعلية، ومتابعة أعمال الصيانة، والتواصل مباشرةً مع المستأجرين، وإضافة مساعدين للمساعدة في الإدارة، كل ذلك من خلال لوحة تحكم ذكية وسهلة الاستخدام. تركز مدار على تعزيز الكفاءة الاقتصادية وتقليل الهدر عبر تتبع الإيرادات والمصاريف بدقة وتذكيرات ذكية تُسهم في قرارات استثمارية مدروسة مبنية على بيانات حقيقية.
-        </p>
+  <!-- لماذا مدار (بطاقة) -->
+  <section class="grid-home">
+    <article class="card">
+      <header class="table-head"><h2>لماذا مدار؟</h2></header>
+      <div class="prose" id="why-modar"></div>
+    </article>
+  </section>
+
+  <!-- تحليلات الصفحة الرئيسية -->
+  <section class="grid-home" aria-label="تحليلات الصفحة الرئيسية">
+    <!-- الإيرادات + الإشغال -->
+    <article class="card">
+      <header class="table-head"><h2>الإيرادات الشهرية</h2></header>
+      <div class="chart-wrap"><canvas id="chart-monthly-revenue" aria-label="الإيرادات الشهرية"></canvas></div>
+      <header class="table-head"><h3>اتجاه الإشغال</h3></header>
+      <div class="chart-wrap"><canvas id="chart-occupancy-trend" aria-label="اتجاه الإشغال"></canvas></div>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-revenue-summary">
+          <thead>
+            <tr>
+              <th>الشهر</th><th>الإيراد (ر.س)</th><th>التغير %</th><th>ملاحظات</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </div>
+    </article>
+
+    <!-- التذاكر حسب الفئة -->
+    <article class="card">
+      <header class="table-head"><h2>التذاكر حسب الفئة</h2></header>
+      <div class="chart-wrap"><canvas id="chart-tickets-by-category" aria-label="التذاكر حسب الفئة"></canvas></div>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-tickets-category">
+          <thead>
+            <tr>
+              <th>الفئة</th><th>عدد التذاكر</th><th>النسبة %</th><th>ملاحظة</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
   </section>
 </main>
 
@@ -84,6 +114,10 @@
     </div>
   </div>
 </footer>
+
+<!-- Charts & home bindings -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin="anonymous"></script>
+<script src="assets/js/home-charts.js?v=1"></script>
 
 </body>
 </html>

@@ -8,6 +8,22 @@
   --text-light: #ffffff;
 }
 
+/* ===================== */
+/* 🔹 Homepage grids */
+.grid-home{ display:grid; grid-template-columns:1fr; gap:22px; margin-top:20px; }
+@media (min-width: 960px){ .grid-home{ grid-template-columns: repeat(2, 1fr); } }
+.grid-home .chart-wrap{ height:260px; padding-block:8px 12px; }
+@media (max-width: 960px){ .grid-home .chart-wrap{ height:220px; } }
+
+/* Prose content inside cards */
+.prose{ display:block; color:var(--text-dark); }
+.prose p{ margin:0 0 12px; font-size:16px; line-height:1.9; }
+.prose ul{ margin:0; padding:0 18px; }
+.prose li{ margin:6px 0; }
+
+/* Numeric alignment */
+.modar-table td, .modar-table th{ font-variant-numeric: tabular-nums; }
+
 
 /* خلفية الصفحة العامة */
 body {
@@ -403,10 +419,20 @@ footer {
 .chat-header{ display:flex; justify-content:center; align-items:center; padding-top:6px; }
 .chat-title{ margin:0; font-weight:700; font-size:clamp(18px,2.2vw,22px); color:var(--color-dark); }
 
+/* Top notice chip */
+.chat-notice{
+  display:inline-flex; align-items:center; gap:10px; width:100%; justify-content:center;
+  background:#ecfdf5; color:#065f46; border:1px solid #d1fae5; border-radius:999px;
+  padding:10px 14px; box-shadow:0 6px 18px rgba(17,24,39,.08); font-weight:700; margin-bottom:10px;
+}
+.chat-notice::before{ content:"🔔"; margin-inline-start:8px; }
+
 .chat-card{ background:#fff; border:1px solid #e5e7eb; border-radius:18px; box-shadow:0 6px 18px rgba(17,24,39,.08); padding:18px; display:flex; gap:12px; align-items:flex-start; }
 .chat-avatar{ width:64px; height:64px; border-radius:999px; object-fit:cover; border:2px solid var(--color-light); }
 .chat-bubble{ flex:1; background:#fbfbff; border:1px solid #e5e7eb; border-radius:22px; padding:18px 20px; line-height:1.9; font-size:16px; color:var(--text-dark); }
 .chat-bubble.primary{ background:#eef2ff; border-color:#dbeafe; }
+.chat-meta{ display:flex; flex-direction:column; gap:6px; flex:1; }
+.chat-name{ margin:0; font-weight:700; color:var(--color-dark); }
 
 .chat-chip{ display:inline-flex; align-items:center; gap:10px; align-self:start; padding:8px 12px; border-radius:999px; border:1px solid #d1fae5; background:#ecfdf5; color:#065f46; font-weight:700; width:max-content; }
 .chat-chip.info::before{ content:"✓"; display:inline-block; width:20px; height:20px; border-radius:999px; background:#10b981; color:#fff; text-align:center; line-height:20px; font-size:12px; }

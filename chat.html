@@ -25,26 +25,43 @@
 </div>
 </header>
 <main class="container page-wrap">
-<section class="chat-shell" aria-label="المحادثة">
-<header class="chat-header">
-<h1 class="chat-title" id="chat-title"></h1>
-</header>
+  <div class="chat-notice" id="chat-notice" role="status" aria-live="polite"></div>
+  <section class="chat-shell" aria-label="المحادثة">
+    <header class="chat-header">
+      <h1 class="chat-title" id="chat-title"></h1>
+    </header>
 
-<article class="chat-card">
-<img class="chat-avatar" src="assets/img/Muhammed.jpg" alt="">
-<div class="chat-bubble primary" id="msg-primary" aria-live="polite"></div>
-</article>
+    <article class="chat-card">
+      <img class="chat-avatar" id="avatar-muhammed" src="assets/img/Muhammed.jpg" alt="">
+      <div class="chat-meta">
+        <h3 class="chat-name" id="name-muhammed"></h3>
+        <p class="chat-bubble primary" id="msg-muhammed" aria-live="polite"></p>
+      </div>
+    </article>
 
-<div class="chat-chip info" id="msg-highlight" role="status" aria-live="polite"></div>
+    <article class="chat-card">
+      <img class="chat-avatar" id="avatar-abdulkarim" src="assets/img/Abdulkarim.jpg" alt="">
+      <div class="chat-meta">
+        <h3 class="chat-name" id="name-abdulkarim"></h3>
+        <p class="chat-bubble primary" id="msg-abdulkarim" aria-live="polite"></p>
+      </div>
+    </article>
 
-<section class="chat-thread" id="chat-thread" role="log" aria-live="polite" aria-relevant="additions"></section>
+    <article class="chat-card">
+      <img class="chat-avatar" src="assets/img/Muhammed.jpg" alt="">
+      <div class="chat-bubble primary" id="msg-primary" aria-live="polite"></div>
+    </article>
 
-<footer class="chat-inputbar">
-<button class="chat-btn add" id="btn-add" aria-label="إضافة"></button>
-<input class="chat-input" id="chat-text" placeholder="اكتب رسالة…" aria-label="اكتب رسالة">
-<button class="chat-btn send" id="btn-send" aria-label="إرسال"></button>
-</footer>
-</section>
+    <div class="chat-chip info" id="msg-highlight" role="status" aria-live="polite"></div>
+
+    <section class="chat-thread" id="chat-thread" role="log" aria-live="polite" aria-relevant="additions"></section>
+
+    <footer class="chat-inputbar">
+      <button class="chat-btn add" id="btn-add" aria-label="إضافة"></button>
+      <input class="chat-input" id="chat-text" placeholder="اكتب رسالة…" aria-label="اكتب رسالة">
+      <button class="chat-btn send" id="btn-send" aria-label="إرسال"></button>
+    </footer>
+  </section>
 </main>
 
 <footer>

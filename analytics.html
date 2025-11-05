@@ -4,7 +4,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Modar | التحليلات</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=22">
+<link rel="stylesheet" href="assets/css/style.css?v=modar">
+<script>
+// Early auth guard to prevent flash before redirect
+try {
+  const path = (location.pathname.split('/').pop() || 'index.html');
+  if (!localStorage.getItem('modar-auth')) {
+    location.replace('login.html?next=' + encodeURIComponent(path + location.search + location.hash));
+  }
+} catch (e) {}
+</script>
 </head>
 <body>
 <header>
@@ -23,37 +32,64 @@
 </nav>
 </div>
 </header>
-<main class="page-wrap">
-<section class="section">
-<div class="container">
-<h1>لوحة التحليلات</h1>
-<div class="kpi-grid">
-<div class="kpi"><span>الطلبات المفتوحة</span><b id="k-open">—</b></div>
-<div class="kpi"><span>إيراد الشهر</span><b id="k-rev">—</b></div>
-<div class="kpi"><span>مصاريف الصيانة</span><b id="k-cost">—</b></div>
-<div class="kpi"><span>الإشغال</span><b id="k-occ">—</b></div>
-</div>
-<div class="cards-grid">
-<article class="card">
-<h3>تفصيل المصروف حسب العقار</h3>
-<div id="bars" class="list"></div>
-</article>
-<article class="card">
-<h3>الطلبات المتأخرة</h3>
-<div id="overdue" class="list"></div>
-</article>
-</div>
-</div>
-</section>
+<main class="container page-wrap">
+  <section class="grid-analytics">
+    <article class="card">
+      <header class="table-head"><h2>أكثر العقارات صرفًا</h2></header>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-top-spend">
+          <thead><tr><th>العقار</th><th>المصروف (ر.س)</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+    <article class="card">
+      <header class="table-head"><h2>آخر الطلبات</h2></header>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-latest-reqs">
+          <thead><tr><th>الوقت</th><th>العقار</th><th>الفئة</th><th>الحالة</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+    <article class="card">
+      <header class="table-head"><h2>أفضل المستخدمين</h2></header>
+      <div class="table-wrap">
+        <div class="chart-wrap"><canvas id="chart-top-users-pie" aria-label="مخطط المستخدمين - توزيع التذاكر المغلقة" title="توزيع التذاكر المغلقة حسب المستخدم"></canvas></div>
+        <table class="modar-table" id="tbl-top-users">
+          <thead><tr><th>الاسم</th><th>الدور</th><th>تذاكر مغلقة</th><th>رضا%</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+    <article class="card">
+      <header class="table-head"><h2>النشاط الأخير</h2></header>
+      <div class="table-wrap">
+        <div class="chart-wrap"><canvas id="chart-activity-bar" aria-label="مخطط النشاط - توزيع حسب الإجراء" title="توزيع النشاط حسب نوع الإجراء"></canvas></div>
+        <table class="modar-table" id="tbl-activity">
+          <thead><tr><th>الوقت</th><th>الفاعل</th><th>الإجراء</th><th>المستهدف</th><th>المستوى</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <div id="dash-error" class="error" role="alert" aria-live="polite" style="display:none"></div>
+
+  <div class="go-bills">
+    <button onclick="window.location.href='bills.html'" class="btn-bills">💳 الانتقال إلى الفواتير</button>
+  </div>
 </main>
 <footer>
 <div class="footer-container">
 <div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div>
-<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
+<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
 <div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
 </div>
 </footer>
-<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/dashboard.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin="anonymous"></script>
+<script src="assets/js/analytics-charts.js?v=1"></script>
 <script src="assets/js/include.js"></script>
 </body>
 </html>

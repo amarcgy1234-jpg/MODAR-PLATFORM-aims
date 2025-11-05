@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Modar | الصيانة</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=22">
+<link rel="stylesheet" href="assets/css/style.css?v=modar">
 </head>
 <body>
 <header>
@@ -29,24 +29,35 @@
 <div class="container">
 <h1>طلبات الصيانة</h1>
 <div class="form-grid">
-<select><option>اختر العقار</option><option>عمارة الشوقية</option><option>برج جدة للأعمال</option></select>
-<input placeholder="الوحدة (مثال: 2B)">
-<select><option>الفئة</option><option>سباكة</option><option>كهرباء</option><option>نظافة</option><option>بوية</option></select>
+<select id="flt-prop" aria-label="تصفية حسب العقار"><option value="">اختر العقار</option><option value="عمارة الشوقية">عمارة الشوقية</option><option value="برج جدة للأعمال">برج جدة للأعمال</option></select>
+<input id="flt-unit" placeholder="الوحدة (مثال: 2B)" aria-label="تصفية حسب الوحدة">
+<select id="flt-cat" aria-label="تصفية حسب الفئة"><option value="">الفئة</option><option>سباكة</option><option>كهرباء</option><option>نظافة</option><option>بوية</option></select>
 <input placeholder="الوصف">
 <button class="btn">إرسال الطلب</button>
 </div>
+
+<section class="maintenance-analytics" aria-label="تحليلات الصيانة">
+<div class="chart-wrap" style="height:280px">
+<canvas id="chart-maintenance-stacked" aria-label="مهام الصيانة حسب العقار والفئة" title="طبيعة المهام – ربع سنوي"></canvas>
+</div>
+<button class="add-analytics-btn" id="btn-add-analytics" type="button" aria-label="Add analytics">+</button>
+</section>
+
 <div class="list" style="margin-top:16px">
 <div class="item"><div><b>#1102</b> – تسرب ماء <span class="chip bad">متأخر</span><div class="muted">عمارة الشوقية — 2B — سباكة</div></div><span class="pill">new</span></div>
 </div>
 </div>
 </section>
 </main>
-<footer> <!-- نفس فوتر index -->
+<footer>
 <div class="footer-container">
 <div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div>
-<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
+<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
 <div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
 </div>
 </footer>
+<script src="assets/js/dashboard.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin="anonymous"></script>
+<script src="assets/js/maintenance-charts.js?v=1"></script>
 </body>
 </html>

@@ -225,7 +225,86 @@ function update(){
   refreshTable();
 }
 
+// ---------- Analytics (JSON-bound) ----------
+async function loadDashboardData(){
+  try{
+    const res = await fetch('assets/data/dashboard.mock.json', {cache:'no-cache'});
+    if(!res.ok) throw new Error('فشل تحميل بيانات لوحة التحكم');
+    const data = await res.json();
+    bindKPIs(data.kpis);
+    bindTables(data.recentActivity, data.topUsers);
+    bindCharts(data.charts);
+  }catch(err){
+    const el = document.getElementById('dash-error');
+    if(el){ el.style.display='block'; el.textContent = (err && err.message) || 'تعذر تحميل البيانات. حاول مجددًا.'; }
+    console.warn(err);
+  }
+}
+
+function bindKPIs(k){
+  if(!k) return;
+  const set = (id,val)=>{ const el=document.getElementById(id); if(el) el.textContent=val; };
+  set('k-total', riyal(k.totalProperties));
+  set('k-occupied', riyal(k.occupiedUnits));
+  set('k-vacant', riyal(k.vacantUnits));
+  set('k-revenue', riyal(k.monthlyRevenue)+' ر.س');
+  set('k-rev-change', (k.revenueChangePct>0?'+':'')+k.revenueChangePct+'%');
+  set('k-open-tickets', riyal(k.openTickets));
+  set('k-avg-res', riyal(k.avgResolutionHours));
+}
+
+function setTbodyRows(tableId, rowsHtml){
+  const table = document.getElementById(tableId);
+  if(!table) return;
+  const tbody = table.tBodies && table.tBodies[0] ? table.tBodies[0] : table.querySelector('tbody');
+  if(tbody){ tbody.innerHTML = rowsHtml; }
+}
+
+function bindTables(activity, users){
+  // recent activity -> #tbl-activity
+  const rowsA = (activity||[]).map(a=>`<tr><td>${new Date(a.timeISO).toLocaleString('ar-SA')}</td><td>${a.actor}</td><td>${a.action}</td><td>${a.target}</td><td>${a.severity||''}</td></tr>`).join('');
+  setTbodyRows('tbl-activity', rowsA);
+  // top users -> #tbl-top-users
+  const rowsU = (users||[]).map(u=>`<tr><td>${u.name}</td><td>${u.role}</td><td>${riyal(u.ticketsClosed)}</td><td>${u.satisfactionPct}%</td></tr>`).join('');
+  setTbodyRows('tbl-top-users', rowsU);
+  // notify charts listeners
+  try{ window.dispatchEvent(new CustomEvent('modar:dataReady', { detail: { activity: activity||[], users: users||[] } })); }catch(_){ }
+}
+
+// Populate from local DB for two tables present in analytics.html
+function bindLocalFromDB(){
+  // Top spend by property -> #tbl-top-spend
+  if(document.getElementById('tbl-top-spend')){
+    const rows = DB.props.slice().sort((a,b)=>b.spend-a.spend)
+      .map(p=>`<tr><td>${p.name}</td><td>${riyal(p.spend)}</td></tr>`).join('');
+    setTbodyRows('tbl-top-spend', rows);
+  }
+  // Latest requests -> #tbl-latest-reqs
+  if(document.getElementById('tbl-latest-reqs')){
+    const recent = [...DB.reqs].slice(-8).reverse();
+    const rows = recent.map(r=>`<tr><td>${new Date(r.createdAt).toLocaleString('ar-SA')}</td><td>${propName(r.prop)}</td><td>${r.cat}</td><td>${r.status}</td></tr>`).join('');
+    setTbodyRows('tbl-latest-reqs', rows);
+  }
+}
+
+function bindCharts(ch){
+  if(!ch) return;
+  drawBarChart(document.getElementById('chart-revenue'), ch.revenueMonthly?.labels||[], ch.revenueMonthly?.values||[]);
+  drawLineChart(document.getElementById('chart-occupancy'), ch.occupancyTrend?.labels||[], ch.occupancyTrend?.values||[]);
+  drawBarChart(document.getElementById('chart-tickets'), ch.ticketsByCategory?.labels||[], ch.ticketsByCategory?.values||[]);
+}
+
+function drawLineChart(canvas, labels, values){ if(!canvas) return; const ctx=canvas.getContext('2d'); const w=canvas.width, h=canvas.height; ctx.clearRect(0,0,w,h); ctx.font='12px Cairo, sans-serif'; ctx.fillStyle='#111827'; const pad=30; const max=Math.max(1, ...values); const step=(w-pad*2)/(Math.max(1,values.length-1)); ctx.strokeStyle='#6246A6'; ctx.lineWidth=2; ctx.beginPath(); values.forEach((v,i)=>{ const x=pad+i*step; const y=h-pad-(v/max)*(h-pad*2); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }); ctx.stroke(); ctx.fillStyle='#6b7280'; labels.forEach((lb,i)=>{ const x=pad+i*step; ctx.fillText(lb, x-10, h-8); }); }
+function drawBarChart(canvas, labels, values){ if(!canvas) return; const ctx=canvas.getContext('2d'); const w=canvas.width, h=canvas.height; ctx.clearRect(0,0,w,h); ctx.font='12px Cairo, sans-serif'; const pad=30; const max=Math.max(1, ...values); const barW=(w-pad*2)/(values.length||1)*0.6; values.forEach((v,i)=>{ const x=pad+i*((w-pad*2)/(values.length||1))+((w-pad*2)/(values.length||1)-barW)/2; const barH=(v/max)*(h-pad*2); const y=h-pad-barH; ctx.fillStyle='#8e6cd3'; ctx.fillRect(x,y,barW,barH); ctx.fillStyle='#6b7280'; ctx.fillText(labels[i]||'', x, h-8); }); }
+
 // init
 document.addEventListener('DOMContentLoaded', () => {
-  show('dash');
+  // Only run old demo view switcher on pages that have it
+  if(document.querySelector('.dash-main')){ show('dash'); }
+  // Bind local DB-driven tables if present
+  bindLocalFromDB();
+  // Load analytics dataset if any analytics tables are present
+  if(document.getElementById('tbl-activity') || document.getElementById('tbl-top-users')){
+    loadDashboardData();
+  }
 });

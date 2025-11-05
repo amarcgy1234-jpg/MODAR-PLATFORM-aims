@@ -1,0 +1,6 @@
+[
+  {"id":"prop-001","name":"بيت مكة الشوقية","imageUrl":"","occupancy":0.95,"monthlyIncome":35000,"monthlyExpenses":2300},
+  {"id":"prop-002","name":"عمارة النخيل","imageUrl":"","occupancy":0.82,"monthlyIncome":22000,"monthlyExpenses":4100},
+  {"id":"prop-003","name":"برج جدة للأعمال","imageUrl":"","occupancy":0.90,"monthlyIncome":48000,"monthlyExpenses":3100},
+  {"id":"prop-004","name":"مجمع النخيل","imageUrl":"","occupancy":0.88,"monthlyIncome":52000,"monthlyExpenses":12000}
+]

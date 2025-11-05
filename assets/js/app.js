@@ -70,5 +70,22 @@
     setActiveNav();
     enableSmoothScroll();
     externalLinksTargetBlank();
+
+    // About section fade-in (subtle opacity animation)
+    try {
+      const sec = document.querySelector('.about-modar');
+      if (sec) {
+        const on = () => sec.classList.add('is-visible');
+        // Use IntersectionObserver for no-jank entry; fallback to immediate
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => { if (e.isIntersecting) { on(); io.disconnect(); } });
+          }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+          io.observe(sec);
+        } else {
+          on();
+        }
+      }
+    } catch (_) {}
   });
 })();

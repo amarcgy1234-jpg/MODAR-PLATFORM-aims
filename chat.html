@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Modar | محادثاتي</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=22">
+<link rel="stylesheet" href="assets/css/style.css?v=modar">
 </head>
 <body>
 <header>
@@ -15,7 +15,7 @@
 <li><a href="index.html">الرئيسية</a></li>
 <li class="nav-logo"><a href="index.html"><img src="assets/img/svg/logo-2.svg" alt="Modar"></a></li>
 <li><a href="properties.html">عقاراتي</a></li>
-<li><a class="active" href="chat.html">محادثاتي</a></li>
+<li><a href="chat.html">محادثاتي</a></li>
 <li><a href="analytics.html">التحليلات</a></li>
 <li><a href="assistants.html">المعاون</a></li>
 <li><a href="tenants.html">المستأجرين</a></li>
@@ -24,40 +24,37 @@
 </nav>
 </div>
 </header>
-<main class="page-wrap">
-<section class="section">
-<div class="container">
-<h1>محادثاتي</h1>
-<div class="chat-layout">
-<aside class="chat-list">
-<input class="w-full" placeholder="بحث في المحادثات">
-<ul class="clean">
-<li class="chat-item active"><b>الدعم الفني</b><div class="muted">تذكير: موعد الصيانة غدًا</div></li>
-<li class="chat-item"><b>أحمد (فني)</b><div class="muted">تم إغلاق الطلب #1004</div></li>
-</ul>
-</aside>
-<section class="chat-room">
-<header class="room-head"><b>الدعم الفني</b><span class="muted">آخر ظهور منذ دقيقة</span></header>
-<div id="room-log" class="room-log">
-<div class="bubble me">السلام عليكم</div>
-<div class="bubble bot">وعليكم السلام، كيف نقدر نخدمك؟</div>
-</div>
-<footer class="room-input">
-<input id="msg" placeholder="اكتب رسالة…"><button class="btn" onclick="sendMsg()">إرسال</button>
+<main class="container page-wrap">
+<section class="chat-shell" aria-label="المحادثة">
+<header class="chat-header">
+<h1 class="chat-title" id="chat-title"></h1>
+</header>
+
+<article class="chat-card">
+<img class="chat-avatar" src="assets/img/Muhammed.jpg" alt="">
+<div class="chat-bubble primary" id="msg-primary" aria-live="polite"></div>
+</article>
+
+<div class="chat-chip info" id="msg-highlight" role="status" aria-live="polite"></div>
+
+<section class="chat-thread" id="chat-thread" role="log" aria-live="polite" aria-relevant="additions"></section>
+
+<footer class="chat-inputbar">
+<button class="chat-btn add" id="btn-add" aria-label="إضافة"></button>
+<input class="chat-input" id="chat-text" placeholder="اكتب رسالة…" aria-label="اكتب رسالة">
+<button class="chat-btn send" id="btn-send" aria-label="إرسال"></button>
 </footer>
 </section>
-</div>
-</div>
-</section>
 </main>
-<footer> <!-- نفس فوتر index -->
+
+<footer>
 <div class="footer-container">
 <div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div>
-<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
+<div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div>
 <div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
 </div>
 </footer>
-<script>function sendMsg(){const i=document.getElementById('msg'); if(!i.value.trim()) return; const log=document.getElementById('room-log'); const me=document.createElement('div'); me.className='bubble me'; me.textContent=i.value; log.appendChild(me); i.value=''; const bot=document.createElement('div'); bot.className='bubble bot'; bot.textContent='تم الاستلام ✅'; log.appendChild(bot); log.scrollTop=log.scrollHeight;}
-</script>
+<script src="assets/js/chat.js?v=1"></script>
+<script src="assets/js/include.js"></script>
 </body>
 </html>

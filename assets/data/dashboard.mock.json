@@ -1,0 +1,62 @@
+{
+  "kpis": {
+    "totalProperties": 12,
+    "occupiedUnits": 86,
+    "vacantUnits": 14,
+    "monthlyRevenue": 185000,
+    "revenueChangePct": 6.4,
+    "openTickets": 9,
+    "avgResolutionHours": 36
+  },
+  "summaries": {
+    "weekly": {
+      "newLeases": 7,
+      "renewals": 12,
+      "tickets": 21,
+      "collectionsPct": 93
+    },
+    "monthly": {
+      "newLeases": 24,
+      "renewals": 38,
+      "tickets": 88,
+      "collectionsPct": 95
+    }
+  },
+  "charts": {
+    "revenueMonthly": {
+      "labels": ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],
+      "values": [120000, 130000, 125000, 140000, 150000, 160000, 170000, 165000, 172000, 180000, 185000, 190000]
+    },
+    "occupancyTrend": {
+      "labels": ["أب","أيلول","تشرين 1","تشرين 2","كانون 1","كانون 2","يناير","فبراير","مارس","أبريل","مايو","يونيو"],
+      "values": [88, 87, 86, 88, 89, 90, 89, 90, 91, 92, 92, 93]
+    },
+    "ticketsByCategory": {
+      "labels": ["سباكة","كهرباء","نظافة","بوية","حدادة"],
+      "values": [24, 18, 12, 9, 6]
+    }
+  },
+  "userAnalytics": {
+    "activeUsers": 142,
+    "newUsers": 28,
+    "retentionPct": 78,
+    "avgSessionMin": 6.3
+  },
+  "systemStats": {
+    "apiLatencyMs": 220,
+    "uptimePct": 99.95,
+    "errorRatePct": 0.18,
+    "queueDepth": 3
+  },
+  "recentActivity": [
+    {"timeISO":"2025-11-05T14:20:00Z","actor":"عبدالله","action":"أغلق تذكرة","target":"سباكة / عمارة الشوقية","severity":"ok"},
+    {"timeISO":"2025-11-05T13:55:00Z","actor":"سارة","action":"جدّدت عقد","target":"شقة 3A / عمارة النخيل","severity":"info"},
+    {"timeISO":"2025-11-05T12:10:00Z","actor":"محمد","action":"سجل دفعة","target":"برج جدة للأعمال","severity":"ok"},
+    {"timeISO":"2025-11-05T09:45:00Z","actor":"فريق الصيانة","action":"فتح تذكرة","target":"كهرباء / مجمع النخيل","severity":"warn"}
+  ],
+  "topUsers": [
+    {"name":"عبدالله","role":"فني","ticketsClosed": 34, "satisfactionPct": 96},
+    {"name":"سارة","role":"مدير تأجير","ticketsClosed": 21, "satisfactionPct": 92},
+    {"name":"ليلى","role":"خدمة عملاء","ticketsClosed": 18, "satisfactionPct": 90}
+  ]
+}

@@ -5,6 +5,7 @@
 <title>Modar | التحليلات</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=modar">
+<link rel="stylesheet" href="assets/css/sidebar.css">
 <script>
 // Early auth guard to prevent flash before redirect
 try {
@@ -14,10 +15,41 @@ try {
   }
 } catch (e) {}
 </script>
+<script>
+(function(){
+  const burger = document.getElementById('btn-menu');
+  const drawer = document.getElementById('drawer');
+  const backdrop = drawer ? drawer.querySelector('.drawer-backdrop') : null;
+  const panel = drawer ? drawer.querySelector('.drawer-panel') : null;
+  let lastFocus = null;
+  function open(){ if(!drawer) return; drawer.hidden=false; drawer.classList.add('open'); lastFocus=document.activeElement; if(panel){ panel.setAttribute('tabindex','-1'); panel.focus(); } document.body.style.overflow='hidden'; }
+  function close(){ if(!drawer) return; drawer.classList.remove('open'); drawer.hidden=true; document.body.style.overflow=''; if(lastFocus&&lastFocus.focus) try{ lastFocus.focus(); }catch(_){} }
+  if(burger&&drawer){ burger.addEventListener('click', (e)=>{ e.preventDefault(); open(); }); }
+  if(backdrop){ backdrop.addEventListener('click', close); }
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); } });
+})();
+</script>
 </head>
 <body>
 <header>
 <div class="container header-row">
+<div class="topbar" role="navigation" aria-label="Top utilities">
+  <div class="util-right">
+    <button class="icon-btn" id="btn-search" aria-label="بحث" title="بحث">🔍</button>
+    <a id="btn-login" class="btn-login" href="login.html" title="تسجيل الدخول">تسجيل الدخول</a>
+    <button class="icon-btn burger" id="mdr-burger" aria-haspopup="true" aria-expanded="false" aria-controls="mdr-drawer" title="القائمة">≡</button>
+    <div id="util-menu" class="util-menu" hidden>
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">من نحن</a>
+      <a href="analytics.html">التحليلات</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+      <a href="contact.html">تواصل</a>
+    </div>
+  </div>
+  <a class="brand-center" href="index.html" aria-label="Modar">
+    <img class="brand-mark" src="assets/img/svg/logo-2.svg" alt="Modar">
+  </a>
+</div>
 <nav class="site-nav">
 <ul>
 <li><a href="index.html">الرئيسية</a></li>
@@ -32,7 +64,114 @@ try {
 </nav>
 </div>
 </header>
+<aside id="side-rail" class="side-rail" aria-label="التنقل الجانبي" aria-expanded="false">
+  <button id="rail-toggle" class="rail-toggle" aria-controls="rail-links" aria-expanded="false" title="القائمة">
+    <span class="rail-ico">≡</span><span class="rail-text">القائمة</span><span class="dot" aria-hidden="true"></span>
+  </button>
+  <nav id="rail-links" class="rail-links" role="navigation">
+    <a href="index.html"><span class="rail-ico">🏠</span><span>الرئيسية</span></a>
+    <a href="properties.html"><span class="rail-ico">🏢</span><span>عقاراتي</span></a>
+    <a href="chat.html"><span class="rail-ico">💬</span><span>محادثاتي</span></a>
+    <a href="analytics.html"><span class="rail-ico">📊</span><span>التحليلات</span></a>
+    <a href="assistants.html"><span class="rail-ico">🤖</span><span>المعاون</span></a>
+    <a href="tenants.html"><span class="rail-ico">👥</span><span>المستأجرين</span></a>
+    <a href="maintenance.html"><span class="rail-ico">🛠️</span><span>الصيانة</span></a>
+    <hr style="border-color:rgba(255,255,255,.12)">
+    <a href="about.html"><span class="rail-ico">ℹ️</span><span>من نحن</span></a>
+    <a href="privacy.html"><span class="rail-ico">🔒</span><span>سياسة الخصوصية</span></a>
+    <a href="contact.html"><span class="rail-ico">✉️</span><span>تواصل</span></a>
+  </nav>
+</aside>
+<!-- Right-side Drawer -->
+<div id="drawer" class="drawer" hidden>
+  <div class="drawer-backdrop" aria-hidden="true"></div>
+  <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="القائمة">
+    <nav class="rail-links" role="navigation">
+      <a href="index.html">الرئيسية</a>
+      <a href="properties.html">عقاراتي</a>
+      <a href="chat.html">محادثاتي</a>
+      <a href="analytics.html">التحليلات</a>
+      <a href="assistants.html">المعاون</a>
+      <a href="tenants.html">المستأجرين</a>
+      <a href="maintenance.html">الصيانة</a>
+      <hr style="border-color:rgba(255,255,255,.12)">
+      <a href="about.html">من نحن</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+      <a href="contact.html">تواصل</a>
+    </nav>
+  </aside>
+</div>
 <main class="container page-wrap">
+  <div class="toolbar" role="toolbar" aria-label="شريط التصفية">
+    <div class="field has-tooltip" data-tooltip="اختر العقار لعرض البيانات">
+      <label class="label" for="an-prop">العقار</label>
+      <select id="an-prop" class="chevron" aria-label="اختيار العقار">
+        <option>الكل</option>
+        <option>عمارة الشوقية</option>
+        <option>عمارة النخيل</option>
+        <option>برج جدة للأعمال</option>
+      </select>
+    </div>
+    <div class="field has-tooltip" data-tooltip="اختر النطاق الزمني">
+      <label class="label" for="an-range">الفترة</label>
+      <select id="an-range" class="chevron" aria-label="النطاق الزمني">
+        <option>آخر 30 يوم</option>
+        <option>آخر 90 يوم</option>
+        <option>هذا العام</option>
+      </select>
+    </div>
+    <div class="field has-tooltip" data-tooltip="تصفية حسب الحالة">
+      <label class="label" for="an-status">الحالة</label>
+      <select id="an-status" class="chevron" aria-label="حالة الطلبات">
+        <option>الكل</option>
+        <option>جديد</option>
+        <option>قيد المعالجة</option>
+        <option>مغلق</option>
+      </select>
+    </div>
+    <button class="btn" type="button" aria-label="تطبيق التصفية">تطبيق</button>
+  </div>
+
+  <section class="kpi-row" aria-label="المؤشرات الرئيسية">
+    <div class="kpi"><div class="v" id="k-total">—</div><div class="l">العقارات</div></div>
+    <div class="kpi"><div class="v" id="k-occupied">—</div><div class="l">الوحدات المشغولة</div></div>
+    <div class="kpi"><div class="v" id="k-vacant">—</div><div class="l">الوحدات الشاغرة</div></div>
+    <div class="kpi"><div class="v" id="k-revenue">—</div><div class="l">إيراد الشهر <span id="k-rev-change"></span></div></div>
+  </section>
+
+  <section class="grid-analytics" aria-label="رسوم الإيرادات والإشغال">
+    <article class="card">
+      <header class="table-head"><h2>ملخّص الإيرادات الشهرية</h2></header>
+      <div class="chart-wrap"><canvas id="chart-revenue" aria-label="الإيرادات الشهرية"></canvas></div>
+      <header class="table-head"><h3>ملخص الجدول (A)</h3></header>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-revenue-summary-analytics">
+          <thead><tr><th>الشهر</th><th>الإيراد (ر.س)</th><th>التغير %</th><th>ملاحظات</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <header class="table-head"><h3>اتجاهات الإشغال (%)</h3></header>
+      <div class="chart-wrap"><canvas id="chart-occupancy" aria-label="اتجاه الإشغال"></canvas></div>
+      <header class="table-head"><h3>ملخص الجدول (B)</h3></header>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-occupancy-notes-analytics-charts">
+          <thead><tr><th>الشهر</th><th>الإشغال %</th><th>الملاحظة</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+    <article class="card">
+      <header class="table-head"><h2>تفصيل الصيانة حسب الفئة</h2></header>
+      <div class="chart-wrap"><canvas id="chart-tickets" aria-label="التذاكر حسب الفئة"></canvas></div>
+      <div class="table-wrap">
+        <table class="modar-table" id="tbl-tickets-category-analytics">
+          <thead><tr><th>الفئة</th><th>عدد التذاكر</th><th>النسبة %</th><th>ملاحظة</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
   <section class="grid-analytics">
     <article class="card">
       <header class="table-head"><h2>أكثر العقارات صرفًا</h2></header>
@@ -80,6 +219,22 @@ try {
     <button onclick="window.location.href='bills.html'" class="btn-bills">💳 الانتقال إلى الفواتير</button>
   </div>
 </main>
+<!-- الجداول التكميلية السفلية (مطابقة للصفحة الرئيسية) -->
+<section class="container grid-analytics" aria-label="الجداول التكميلية">
+  <article class="card">
+    <header class="table-head"><h2>ملاحظات الإشغال</h2></header>
+    <div class="table-wrap">
+      <table class="modar-table" id="tbl-occupancy-notes-analytics">
+        <thead>
+          <tr>
+            <th>الشهر</th><th>الإشغال %</th><th>الملاحظة</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </article>
+  </section>
 <footer>
 <div class="footer-container">
 <div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div>
@@ -87,9 +242,49 @@ try {
 <div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
 </div>
 </footer>
-<script src="assets/js/dashboard.js?v=1"></script>
+<div id="logout-bar" class="logout-bar" hidden>
+  <div class="logout-wrap">
+    <span id="login-state">تم تسجيل الدخول</span>
+    <button id="btn-logout" class="btn-logout">تسجيل الخروج</button>
+  </div>
+</div>
+<script>
+(function(){
+  const menuBtn = document.getElementById('btn-menu');
+  const menu = document.getElementById('util-menu');
+  const loginBtn = document.getElementById('btn-login');
+  const logoutBar = document.getElementById('logout-bar');
+  const logoutBtn = document.getElementById('btn-logout');
+  const stateEl = document.getElementById('login-state');
+  function refreshAuth(){ try{ const ok = localStorage.getItem('modar-auth')==='true'; if(ok){ if(loginBtn) loginBtn.style.display='none'; if(logoutBar){ logoutBar.hidden=false; stateEl && (stateEl.textContent='مرحباً، '+(localStorage.getItem('modar-user')||'مستخدم')); } } else { if(loginBtn) loginBtn.style.display=''; if(logoutBar) logoutBar.hidden=true; } }catch(_){} }
+  refreshAuth();
+  if(menuBtn && menu){ menuBtn.addEventListener('click', ()=>{ const open = menu.hasAttribute('hidden')?false:true; if(open){ menu.setAttribute('hidden',''); menuBtn.setAttribute('aria-expanded','false'); } else { menu.removeAttribute('hidden'); menuBtn.setAttribute('aria-expanded','true'); } }); document.addEventListener('click', (e)=>{ if(menu && !menu.contains(e.target) && e.target!==menuBtn){ menu.setAttribute('hidden',''); menuBtn.setAttribute('aria-expanded','false'); } }); }
+  if(logoutBtn){ logoutBtn.addEventListener('click', ()=>{ try{ localStorage.removeItem('modar-auth'); localStorage.removeItem('modar-user'); }catch(_){} refreshAuth(); window.location.href='login.html'; }); }
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin="anonymous"></script>
-<script src="assets/js/analytics-charts.js?v=1"></script>
+<script src="assets/js/analytics.js"></script>
 <script src="assets/js/include.js"></script>
+<script src="assets/js/app.js"></script>
+<div id="modar-sidebar-root"></div>
+<script src="assets/js/sidebar.js" defer></script>
+<script>
+(function(){
+  const rail = document.getElementById('side-rail');
+  const toggle = document.getElementById('rail-toggle');
+  if(!rail || !toggle) return;
+  const setOpen = (open)=> {
+    rail.classList.toggle('expanded', open);
+    rail.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  let open = false;
+  toggle.addEventListener('click', (e)=>{ e.stopPropagation(); open = !open; setOpen(open); });
+  document.addEventListener('click', (e)=>{ if(!rail.contains(e.target)){ open=false; setOpen(false); } });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ open=false; setOpen(false); } });
+  const links = rail.querySelectorAll('.rail-links a');
+  links.forEach(a=>{ const isActive = location.pathname.split('/').pop() === a.getAttribute('href'); if(isActive) a.classList.add('active'); });
+})();
+</script>
 </body>
 </html>

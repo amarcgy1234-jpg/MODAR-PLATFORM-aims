@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Modar | سياسة الخصوصية</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/style.css?v=22"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Modar | سياسة الخصوصية</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/style.css?v=22"><link rel="stylesheet" href="assets/css/sidebar.css"></head>
 <body>
-<header><div class="container header-row"><nav class="site-nav"><ul>
+<header><div class="container header-row"><div class="topbar" role="navigation" aria-label="Top utilities">
+  <div class="util-right">
+    <button class="icon-btn" id="btn-search" aria-label="بحث" title="بحث">🔍</button>
+    <a id="btn-login" class="btn-login" href="login.html" title="تسجيل الدخول">تسجيل الدخول</a>
+    <button class="icon-btn burger" id="mdr-burger" aria-haspopup="true" aria-expanded="false" aria-controls="mdr-drawer" title="القائمة">≡</button>
+    <div id="util-menu" class="util-menu" hidden>
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">من نحن</a>
+      <a href="analytics.html">التحليلات</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+      <a href="contact.html">تواصل</a>
+    </div>
+  </div>
+  <a class="brand-center" href="index.html" aria-label="Modar">
+    <img class="brand-mark" src="assets/img/svg/logo-2.svg" alt="Modar">
+  </a>
+</div><nav class="site-nav"><ul>
 <li><a href="index.html">الرئيسية</a></li>
 <li class="nav-logo"><a href="index.html"><img src="assets/img/svg/logo-2.svg" alt="Modar"></a></li>
 <li><a href="properties.html">عقاراتي</a></li>
@@ -12,14 +28,87 @@
 <li><a href="tenants.html">المستأجرين</a></li>
 <li><a href="maintenance.html">الصيانة</a></li>
 </ul></nav></div></header>
+
+<aside id="side-rail" class="side-rail" aria-label="التنقل الجانبي" aria-expanded="false">
+  <button id="rail-toggle" class="rail-toggle" aria-controls="rail-links" aria-expanded="false" title="القائمة">
+    <span class="rail-ico">≡</span><span class="rail-text">القائمة</span><span class="dot" aria-hidden="true"></span>
+  </button>
+  <nav id="rail-links" class="rail-links" role="navigation">
+    <a href="index.html"><span class="rail-ico">🏠</span><span>الرئيسية</span></a>
+    <a href="properties.html"><span class="rail-ico">🏢</span><span>عقاراتي</span></a>
+    <a href="chat.html"><span class="rail-ico">💬</span><span>محادثاتي</span></a>
+    <a href="analytics.html"><span class="rail-ico">📊</span><span>التحليلات</span></a>
+    <a href="assistants.html"><span class="rail-ico">🤖</span><span>المعاون</span></a>
+    <a href="tenants.html"><span class="rail-ico">👥</span><span>المستأجرين</span></a>
+    <a href="maintenance.html"><span class="rail-ico">🛠️</span><span>الصيانة</span></a>
+    <hr style="border-color:rgba(255,255,255,.12)">
+    <a href="about.html"><span class="rail-ico">ℹ️</span><span>من نحن</span></a>
+    <a href="privacy.html"><span class="rail-ico">🔒</span><span>سياسة الخصوصية</span></a>
+    <a href="contact.html"><span class="rail-ico">✉️</span><span>تواصل</span></a>
+  </nav>
+</aside>
 <main class="page-wrap"><section class="section"><div class="container">
 <h1>سياسة الخصوصية</h1>
-<h3 id="security">أمن المعلومات</h3>
-<p>نلتزم بحماية بيانات العملاء عبر تشفير الاتصالات وإدارة صلاحيات دقيقة.</p>
-<h3 id="faq">الأسئلة الشائعة</h3>
-<ul class="list clean"><li>كيف تُحفظ بياناتي؟ — تُخزن في قواعد بيانات آمنة.</li><li>هل يمكن حذف حسابي؟ — نعم عبر الدعم.</li></ul>
+
+<h3>1) المقدمة والغرض</h3>
+<p>تهدف هذه السياسة إلى توضيح كيفية تعامل منصة «مُدار» مع بيانات المستخدمين لحماية الخصوصية وتمكين استخدامٍ آمن وفعّال.</p>
+
+<h3>2) البيانات التي نجمعها</h3>
+<p>قد نجمع بيانات ملكية، عقود الإيجار، الفواتير والمدفوعات، طلبات الصيانة، والمراسلات داخل المنصة.</p>
+
+<h3>3) كيف نستخدم البيانات</h3>
+<p>نستخدم البيانات لتقديم التحليلات ولوحات القياس، التذكيرات والتنبيهات، وإنشاء التقارير التشغيلية والمالية.</p>
+
+<h3>4) مشاركة البيانات</h3>
+<p>لا نبيع بيانات المستخدمين. نشارك الحد الأدنى الضروري مع شركاء تقنيين عند الحاجة لتقديم الخدمة وتحسينها.</p>
+
+<h3 id="security">5) الحماية والأمن</h3>
+<p>نطبق HTTPS/TLS لحماية الاتصالات، ونُدير صلاحيات الوصول وفق مبدأ أقل امتياز، مع مراقبة وتدقيق دوري.</p>
+
+<h3>6) حقوق المستخدم</h3>
+<p>يحق لك الوصول لبياناتك وتصحيحها وطلب حذفها وفق القوانين المعمول بها. تواصل معنا لتنفيذ طلباتك.</p>
+
+<h3>7) ملفات تعريف الارتباط</h3>
+<p>نستخدم ملفات تعريف الارتباط لتحسين الأداء وتجربة المستخدم. يمكنك ضبط المتصفح لإدارتها.</p>
+
+<h3 id="faq">8) التواصل والدعم</h3>
+<p>للاستفسارات أو ممارسة حقوقك، راسل فريق الدعم عبر صفحة <a href="support.html">الدعم</a>.</p>
+
 </div></section></main>
 <footer> <!-- نفس فوتر index -->
-<div class="footer-container"><div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div><div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR© 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div><div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div></div>
+<div class="footer-container"><div class="footer-left"><img src="assets/img/svg/roshn.svg" alt="ROSHN"><img src="assets/img/svg/tuwaiq.svg" alt="Tuwaiq"></div><div class="footer-center"><img src="assets/img/svg/logo-2.svg" alt="Modar" class="footer-logo"><p>مدار حيث يُدار العقار</p><p class="copy">MODAR 2025 جميع الحقوق محفوظة — تم تطويره وصيانته بواسطة AIMS</p></div><div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div></div>
 </footer>
+<div id="logout-bar" class="logout-bar" hidden>
+  <div class="logout-wrap">
+    <span id="login-state">تم تسجيل الدخول</span>
+    <button id="btn-logout" class="btn-logout">تسجيل الخروج</button>
+  </div>
+</div>
+<script>(function(){
+  const menuBtn=document.getElementById('btn-menu');
+  const menu=document.getElementById('util-menu');
+  const loginBtn=document.getElementById('btn-login');
+  const logoutBar=document.getElementById('logout-bar');
+  const logoutBtn=document.getElementById('btn-logout');
+  const stateEl=document.getElementById('login-state');
+  function refreshAuth(){try{const ok=localStorage.getItem('modar-auth')==='true';if(ok){if(loginBtn) loginBtn.style.display='none';if(logoutBar){logoutBar.hidden=false;stateEl&&(stateEl.textContent='مرحباً، '+(localStorage.getItem('modar-user')||'مستخدم'));}}else{if(loginBtn) loginBtn.style.display='';if(logoutBar) logoutBar.hidden=true;}}catch(_){}}
+  refreshAuth();
+  if(menuBtn&&menu){menuBtn.addEventListener('click',()=>{const open=menu.hasAttribute('hidden')?false:true; if(open){menu.setAttribute('hidden','');menuBtn.setAttribute('aria-expanded','false');}else{menu.removeAttribute('hidden');menuBtn.setAttribute('aria-expanded','true');}});document.addEventListener('click',(e)=>{if(menu&&!menu.contains(e.target)&&e.target!==menuBtn){menu.setAttribute('hidden','');menuBtn.setAttribute('aria-expanded','false');}});} 
+  if(logoutBtn){logoutBtn.addEventListener('click',()=>{try{localStorage.removeItem('modar-auth');localStorage.removeItem('modar-user');}catch(_){ } refreshAuth(); window.location.href='login.html';});}
+})();</script>
+<div id="modar-sidebar-root"></div>
+<script src="assets/js/sidebar.js" defer></script>
+<script>
+(function(){
+  const rail = document.getElementById('side-rail');
+  const toggle = document.getElementById('rail-toggle');
+  if(!rail || !toggle) return;
+  const setOpen = (open)=>{ rail.classList.toggle('expanded', open); rail.setAttribute('aria-expanded', open?'true':'false'); toggle.setAttribute('aria-expanded', open?'true':'false'); };
+  let open=false; toggle.addEventListener('click',(e)=>{ e.stopPropagation(); open=!open; setOpen(open); });
+  document.addEventListener('click',(e)=>{ if(!rail.contains(e.target)){ open=false; setOpen(false); } });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ open=false; setOpen(false); } });
+  const links = rail.querySelectorAll('.rail-links a');
+  links.forEach(a=>{ const isActive = location.pathname.split('/').pop() === a.getAttribute('href'); if(isActive) a.classList.add('active'); });
+})();
+</script>
 </body></html>

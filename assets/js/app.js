@@ -87,5 +87,30 @@
         }
       }
     } catch (_) {}
+
+    // Reveal-once animation for cards/components; respects reduced motion
+    try{
+      const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const els = Array.from(document.querySelectorAll('.reveal-once'));
+      if(prefersReduce){ els.forEach(el=> el.classList.add('is-visible')); }
+      else if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+        els.forEach(el=> io.observe(el));
+      } else {
+        els.forEach(el=> el.classList.add('is-visible'));
+      }
+    }catch(_){ }
+
+    // Global print handler: buttons/links with [data-print]
+    try{
+      document.addEventListener('click', (e)=>{
+        const btn = e.target.closest('[data-print]');
+        if(!btn) return;
+        e.preventDefault();
+        window.print();
+      });
+    }catch(_){ }
   });
 })();

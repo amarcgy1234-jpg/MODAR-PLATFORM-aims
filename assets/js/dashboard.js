@@ -239,7 +239,7 @@ async function loadDashboardData(){
     if(el){ el.style.display='block'; el.textContent = (err && err.message) || 'تعذر تحميل البيانات. حاول مجددًا.'; }
     console.warn(err);
   }
-}
+}   
 
 function bindKPIs(k){
   if(!k) return;
@@ -292,6 +292,77 @@ function bindCharts(ch){
   drawBarChart(document.getElementById('chart-revenue'), ch.revenueMonthly?.labels||[], ch.revenueMonthly?.values||[]);
   drawLineChart(document.getElementById('chart-occupancy'), ch.occupancyTrend?.labels||[], ch.occupancyTrend?.values||[]);
   drawBarChart(document.getElementById('chart-tickets'), ch.ticketsByCategory?.labels||[], ch.ticketsByCategory?.values||[]);
+  // Fill compact explanatory table under charts if present
+  try{
+    // Revenue summary (Table A)
+    const tblA = document.getElementById('tbl-revenue-summary-analytics');
+    if(tblA){
+      const labels = ch.revenueMonthly?.labels||[];
+      const vals = ch.revenueMonthly?.values||[];
+      let prev = null;
+      const rows = labels.map((m,i)=>{
+        const v = vals[i]||0;
+        let chg = 0; if(prev!=null && prev!==0){ chg = ((v - prev)/prev*100); }
+        prev = v;
+        const note = chg===0? '—' : (chg>0? 'تحسن' : 'انخفاض');
+        return `<tr><td>${m}</td><td>${riyal(v)}</td><td>${chg?chg.toFixed(1):'0.0'}%</td><td>${note}</td></tr>`;
+      }).join('');
+      const tbodyA = tblA.tBodies && tblA.tBodies[0] ? tblA.tBodies[0] : tblA.querySelector('tbody');
+      if(tbodyA) tbodyA.innerHTML = rows;
+    }
+    // Occupancy notes under charts (Table B)
+    const tblB = document.getElementById('tbl-occupancy-notes-analytics-charts');
+    if(tblB){
+      const labels = ch.occupancyTrend?.labels||[];
+      const vals = ch.occupancyTrend?.values||[];
+      const rows = labels.map((m,i)=>{
+        const v = Number(vals[i]||0);
+        let note = '—';
+        if(v >= 90) note = 'ممتاز';
+        else if(v >= 80) note = 'جيد';
+        else if(v >= 60) note = 'متوسط';
+        else note = 'منخفض';
+        return `<tr><td>${m}</td><td>${v}%</td><td>${note}</td></tr>`;
+      }).join('');
+      const tbodyB = tblB.tBodies && tblB.tBodies[0] ? tblB.tBodies[0] : tblB.querySelector('tbody');
+      if(tbodyB) tbodyB.innerHTML = rows;
+    }
+  }catch(_){ }
+  // Fill mirrored occupancy notes table at the bottom if present
+  try{
+    const tbl2 = document.getElementById('tbl-occupancy-notes-analytics');
+    if(tbl2){
+      const labels = ch.occupancyTrend?.labels||[];
+      const occVals = ch.occupancyTrend?.values||[];
+      const rows = labels.map((m,i)=>{
+        const v = Number(occVals[i]||0);
+        let note = '—';
+        if(v >= 90) note = 'ممتاز';
+        else if(v >= 80) note = 'جيد';
+        else if(v >= 60) note = 'متوسط';
+        else note = 'منخفض';
+        return `<tr><td>${m}</td><td>${v}%</td><td>${note}</td></tr>`;
+      }).join('');
+      const tbody2 = tbl2.tBodies && tbl2.tBodies[0] ? tbl2.tBodies[0] : tbl2.querySelector('tbody');
+      if(tbody2) tbody2.innerHTML = rows;
+    }
+  }catch(_){ }
+  // Tickets by category table under the chart (analytics page)
+  try{
+    const tbl = document.getElementById('tbl-tickets-category-analytics');
+    if(tbl){
+      const labels = ch.ticketsByCategory?.labels||[];
+      const vals = ch.ticketsByCategory?.values||[];
+      const total = (vals||[]).reduce((s,n)=>s+(n||0),0) || 1;
+      const rows = labels.map((c,i)=>{
+        const v = vals[i]||0; const pct = (v/total*100).toFixed(1);
+        const note = v===0? '—' : '';
+        return `<tr><td>${c}</td><td>${v}</td><td>${pct}%</td><td>${note}</td></tr>`;
+      }).join('');
+      const tbody = tbl.tBodies && tbl.tBodies[0] ? tbl.tBodies[0] : tbl.querySelector('tbody');
+      if(tbody) tbody.innerHTML = rows;
+    }
+  }catch(_){ }
 }
 
 function drawLineChart(canvas, labels, values){ if(!canvas) return; const ctx=canvas.getContext('2d'); const w=canvas.width, h=canvas.height; ctx.clearRect(0,0,w,h); ctx.font='12px Cairo, sans-serif'; ctx.fillStyle='#111827'; const pad=30; const max=Math.max(1, ...values); const step=(w-pad*2)/(Math.max(1,values.length-1)); ctx.strokeStyle='#6246A6'; ctx.lineWidth=2; ctx.beginPath(); values.forEach((v,i)=>{ const x=pad+i*step; const y=h-pad-(v/max)*(h-pad*2); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }); ctx.stroke(); ctx.fillStyle='#6b7280'; labels.forEach((lb,i)=>{ const x=pad+i*step; ctx.fillText(lb, x-10, h-8); }); }

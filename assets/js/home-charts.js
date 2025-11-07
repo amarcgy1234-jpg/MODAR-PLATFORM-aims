@@ -12,6 +12,21 @@
     return res.json();
   }
 
+  function fillOccNotes(tableId, labels, values){
+    const tbody = document.querySelector(`#${tableId} tbody`);
+    if(!tbody) return;
+    const rows = labels.map((m,i)=>{
+      const v = Number(values[i]||0);
+      let note = '—';
+      if(v >= 90) note = 'ممتاز';
+      else if(v >= 80) note = 'جيد';
+      else if(v >= 60) note = 'متوسط';
+      else note = 'منخفض';
+      return `<tr><td>${m}</td><td>${v}%</td><td>${note}</td></tr>`;
+    }).join('');
+    tbody.innerHTML = rows;
+  }
+
   function drawRevenueBar(canvas, labels, values){
     if(!canvas || !hasChart()) return null;
     const ctx = canvas.getContext('2d');
@@ -166,6 +181,7 @@
         const c3 = drawTicketsBar(document.getElementById('chart-tickets-by-category'), tix.labels, tix.values);
         fillRevenueSummary('tbl-revenue-summary', rev.labels, rev.values);
         fillTicketsTable('tbl-tickets-category', tix.labels, tix.values);
+        fillOccNotes('tbl-occupancy-notes', occ.labels, occ.values);
         // store references if later updates are needed
         window.ModarHomeCharts = { c1, c2, c3 };
       });

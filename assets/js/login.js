@@ -71,8 +71,8 @@
 
     // Remember username
     try{ if(rememberEl?.checked){ localStorage.setItem('modar-last-username', email); } }catch(_){ }
-    // Set auth token
-    try{ localStorage.setItem('modar-auth', JSON.stringify({ email, ts: Date.now() })); }catch(_){ }
+    // Set auth token (normalized to 'true') and store username for UI
+    try{ localStorage.setItem('modar-auth', 'true'); localStorage.setItem('modar-user', email); }catch(_){ }
     location.href = next;
   });
 })();

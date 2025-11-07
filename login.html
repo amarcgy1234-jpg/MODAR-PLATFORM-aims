@@ -6,11 +6,29 @@
 <title>Modar | تسجيل الدخول</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=22">
+<link rel="stylesheet" href="assets/css/sidebar.css">
 <link rel="stylesheet" href="assets/css/login.css?v=1">
 </head>
 <body>
 <header>
 <div class="container header-row">
+<div class="topbar" role="navigation" aria-label="Top utilities">
+  <div class="util-right">
+    <button class="icon-btn" id="btn-search" aria-label="بحث" title="بحث">🔍</button>
+    <a id="btn-login" class="btn-login" href="login.html" title="تسجيل الدخول">تسجيل الدخول</a>
+    <button class="icon-btn burger" id="mdr-burger" aria-haspopup="true" aria-expanded="false" aria-controls="mdr-drawer" title="القائمة">≡</button>
+    <div id="util-menu" class="util-menu" hidden>
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">من نحن</a>
+      <a href="analytics.html">التحليلات</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+      <a href="contact.html">تواصل</a>
+    </div>
+  </div>
+  <a class="brand-center" href="index.html" aria-label="Modar">
+    <img class="brand-mark" src="assets/img/svg/logo-2.svg" alt="Modar">
+  </a>
+</div>
 <nav class="site-nav">
 <ul>
 <li><a href="index.html">الرئيسية</a></li>
@@ -25,6 +43,25 @@
 </nav>
 </div>
 </header>
+
+<aside id="side-rail" class="side-rail" aria-label="التنقل الجانبي" aria-expanded="false">
+  <button id="rail-toggle" class="rail-toggle" aria-controls="rail-links" aria-expanded="false" title="القائمة">
+    <span class="rail-ico">≡</span><span class="rail-text">القائمة</span><span class="dot" aria-hidden="true"></span>
+  </button>
+  <nav id="rail-links" class="rail-links" role="navigation">
+    <a href="index.html"><span class="rail-ico">🏠</span><span>الرئيسية</span></a>
+    <a href="properties.html"><span class="rail-ico">🏢</span><span>عقاراتي</span></a>
+    <a href="chat.html"><span class="rail-ico">💬</span><span>محادثاتي</span></a>
+    <a href="analytics.html"><span class="rail-ico">📊</span><span>التحليلات</span></a>
+    <a href="assistants.html"><span class="rail-ico">🤖</span><span>المعاون</span></a>
+    <a href="tenants.html"><span class="rail-ico">👥</span><span>المستأجرين</span></a>
+    <a href="maintenance.html"><span class="rail-ico">🛠️</span><span>الصيانة</span></a>
+    <hr style="border-color:rgba(255,255,255,.12)">
+    <a href="about.html"><span class="rail-ico">ℹ️</span><span>من نحن</span></a>
+    <a href="privacy.html"><span class="rail-ico">🔒</span><span>سياسة الخصوصية</span></a>
+    <a href="contact.html"><span class="rail-ico">✉️</span><span>تواصل</span></a>
+  </nav>
+</aside>
 <main class="page-wrap">
   <section class="auth-wrap">
     <div class="auth-card" role="region" aria-labelledby="auth-title">
@@ -68,6 +105,39 @@
 <div class="footer-right"><a href="support.html">الدعم</a><a href="about.html">من نحن</a><a href="privacy.html#security">أمن المعلومات</a><a href="privacy.html#faq">الأسئلة الشائعة</a><a href="privacy.html">سياسة الخصوصية</a></div>
 </div>
 </footer>
+<div id="logout-bar" class="logout-bar" hidden>
+  <div class="logout-wrap">
+    <span id="login-state">تم تسجيل الدخول</span>
+    <button id="btn-logout" class="btn-logout">تسجيل الخروج</button>
+  </div>
+</div>
+<script>(function(){
+  const menuBtn=document.getElementById('btn-menu');
+  const menu=document.getElementById('util-menu');
+  const loginBtn=document.getElementById('btn-login');
+  const logoutBar=document.getElementById('logout-bar');
+  const logoutBtn=document.getElementById('btn-logout');
+  const stateEl=document.getElementById('login-state');
+  function refreshAuth(){try{const ok=localStorage.getItem('modar-auth')==='true';if(ok){if(loginBtn) loginBtn.style.display='none';if(logoutBar){logoutBar.hidden=false;stateEl&&(stateEl.textContent='مرحباً، '+(localStorage.getItem('modar-user')||'مستخدم'));}}else{if(loginBtn) loginBtn.style.display='';if(logoutBar) logoutBar.hidden=true;}}catch(_){}}
+  refreshAuth();
+  if(menuBtn&&menu){menuBtn.addEventListener('click',()=>{const open=menu.hasAttribute('hidden')?false:true; if(open){menu.setAttribute('hidden','');menuBtn.setAttribute('aria-expanded','false');}else{menu.removeAttribute('hidden');menuBtn.setAttribute('aria-expanded','true');}});document.addEventListener('click',(e)=>{if(menu&&!menu.contains(e.target)&&e.target!==menuBtn){menu.setAttribute('hidden','');menuBtn.setAttribute('aria-expanded','false');}});} 
+  if(logoutBtn){logoutBtn.addEventListener('click',()=>{try{localStorage.removeItem('modar-auth');localStorage.removeItem('modar-user');}catch(_){ } refreshAuth(); window.location.href='login.html';});}
+})();</script>
 <script src="assets/js/login.js?v=1"></script>
+<div id="modar-sidebar-root"></div>
+<script src="assets/js/sidebar.js" defer></script>
+<script>
+(function(){
+  const rail = document.getElementById('side-rail');
+  const toggle = document.getElementById('rail-toggle');
+  if(!rail || !toggle) return;
+  const setOpen = (open)=>{ rail.classList.toggle('expanded', open); rail.setAttribute('aria-expanded', open?'true':'false'); toggle.setAttribute('aria-expanded', open?'true':'false'); };
+  let open=false; toggle.addEventListener('click',(e)=>{ e.stopPropagation(); open=!open; setOpen(open); });
+  document.addEventListener('click',(e)=>{ if(!rail.contains(e.target)){ open=false; setOpen(false); } });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ open=false; setOpen(false); } });
+  const links = rail.querySelectorAll('.rail-links a');
+  links.forEach(a=>{ const isActive = location.pathname.split('/').pop() === a.getAttribute('href'); if(isActive) a.classList.add('active'); });
+})();
+</script>
 </body>
 </html>

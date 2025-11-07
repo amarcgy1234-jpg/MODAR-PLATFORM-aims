@@ -12,6 +12,23 @@
 <!-- شريط التنقل -->
 <header>
   <div class="container header-row">
+    <div class="topbar" role="navigation" aria-label="Top utilities">
+      <div class="util-right">
+        <button class="icon-btn" id="btn-search" aria-label="بحث" title="بحث">🔍</button>
+        <a id="btn-login" class="btn-login" href="login.html" title="تسجيل الدخول">تسجيل الدخول</a>
+        <button class="icon-btn burger" id="btn-menu" aria-haspopup="true" aria-expanded="false" aria-controls="util-menu" title="القائمة">≡</button>
+        <div id="util-menu" class="util-menu" hidden>
+          <a href="index.html">الرئيسية</a>
+          <a href="about.html">من نحن</a>
+          <a href="analytics.html">التحليلات</a>
+          <a href="privacy.html">سياسة الخصوصية</a>
+          <a href="contact.html">تواصل</a>
+        </div>
+      </div>
+      <a class="brand-center" href="index.html" aria-label="Modar">
+        <img class="brand-mark" src="assets/img/svg/logo-2.svg" alt="Modar">
+      </a>
+    </div>
     <nav class="site-nav">
       <ul>
         <li><a class="active" href="index.html">الرئيسية</a></li>
@@ -31,61 +48,62 @@
   </div>
 </header>
 
-<!-- المحتوى الرئيسي -->
+<!-- sidebar/drawer removed globally -->
+
+<!-- المحتوى الرئيسي (نسق داكن) -->
 <main class="page-wrap">
-  <!-- القسم الرئيسي -->
-  <section class="hero">
-    <div class="hero-card">
-      <img src="assets/img/svg/logo-1.svg" alt="شعار مدار" class="hero-logo">
-      <h1>Modar</h1>
-      <button onclick="window.location.href='login.html'" class="btn-gray">تسجيل الدخول</button>
+  <!-- HERO -->
+  <section class="container hero-dark reveal-once" aria-label="الافتتاح">
+    <img src="assets/img/svg/logo-2.svg" alt="Modar" class="logo-top" />
+    <span class="badge-pill">منصة إدارة عقارات ذكية تعتمد على البيانات</span>
+    <h1 class="hero-title">إدارة عقارك بثقة… في دقائق</h1>
+    <p class="hero-sub">مدار يجمع الذكاء الاصطناعي مع بيانات تشغيلية ومالية موثوقة، ليمنحك لوحة تحكم موحّدة للتحصيل، الصيانة، والإشغال—بسرعة ودقّة.</p>
+    <a href="analytics.html" class="btn-gradient">جرّب مدار</a>
+  </section>
+
+  <!-- VISION -->
+  <section class="container section-dark reveal-once" aria-label="رؤيتنا ورسالتنا">
+    <header class="table-head"><h2>رؤيتنا ورسالتنا</h2></header>
+    <div class="grid-2">
+      <article class="card-dark"><h3>نحو إدارة موحّدة</h3><p>نستبدل الجداول المتفرقة بلوحة واحدة تربط الإيجارات، الصيانة، والتقارير.</p></article>
+      <article class="card-dark"><h3>قرارات مبنية على البيانات</h3><p>مؤشرات مالية وتشغيلية فورية تدعم القرار بثقة.</p></article>
+      <article class="card-dark"><h3>تجربة عربية كاملة</h3><p>تصميم RTL، تنبيهات ذكية، وتقارير واضحة للمُلّاك والمستأجرين.</p></article>
+      <article class="card-dark"><h3>قابلية للتوسّع</h3><p>بنية جاهزة للتكامل مع الأنظمة والفوترة ومقدمي الخدمات.</p></article>
     </div>
   </section>
 
-  <!-- لماذا مدار (بطاقة) -->
-  <section class="grid-home">
-    <article class="card">
-      <header class="table-head"><h2>لماذا مدار؟</h2></header>
-      <div class="prose" id="why-modar"></div>
+  <!-- WHY MODAR -->
+  <section class="container section-dark reveal-once" id="benefits" aria-label="لماذا مدار؟">
+    <header class="table-head"><h2>لماذا مدار؟</h2></header>
+    <div class="grid-3">
+      <article class="card-dark"><h3>تحصيل آلي</h3><p>تذكيرات ذكية ومعدّل تحصيل لحظي.</p></article>
+      <article class="card-dark"><h3>صيانة فعّالة</h3><p>تذاكر مصنّفة وSLA ومتابعة الحالة.</p></article>
+      <article class="card-dark"><h3>تحليلات فورية</h3><p>إيراد/مصروف/إشغال مع اتجاهات شهرية.</p></article>
+      <article class="card-dark"><h3>مساعد ذكي</h3><p>يوصي بالإجراء التالي بناءً على البيانات.</p></article>
+      <article class="card-dark"><h3>أمان وخصوصية</h3><p>تشفير وحوكمة وصول واضحة.</p></article>
+      <article class="card-dark"><h3>تكاملات جاهزة</h3><p>API وتصدير تقارير PDF/Excel.</p></article>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="container section-dark reveal-once" aria-label="فريق مدار">
+    <header class="table-head"><h2>فريق مدار</h2></header>
+    <div class="grid-4">
+      <article class="team-mini card-dark"><img src="assets/img/svg/Muhammed.svg" alt="Muhammed"><h3>Muhammed</h3><p>هندسة معمارية؛ تجربة المستخدم والهوية البصرية.</p></article>
+      <article class="team-mini card-dark"><img src="assets/img/svg/Ammar.svg" alt="Ammar"><h3>Ammar</h3><p>هندسة كهربائية؛ أتمتة وتحليل بيانات وأنظمة RFID/QR.</p></article>
+      <article class="team-mini card-dark"><img src="assets/img/svg/Abdulkarim.svg" alt="Abdulkarim"><h3>Abdulkarim</h3><p>تنسيق المنتج والمحتوى والتواصل مع الشركاء.</p></article>
+      <article class="team-mini card-dark"><img src="assets/img/svg/Assel.svg" alt="Assel"><h3>Assel</h3><p>هندسة ميكانيكية؛ نماذج أولية وتحليلات بالذكاء الاصطناعي.</p></article>
+    </div>
+  </section>
+
+  <!-- BOTTOM LOGIN CTA -->
+  <section class="container section-dark reveal-once" aria-label="تسجيل الدخول">
+    <article class="card-dark center">
+      <p class="muted">لديك حساب؟</p>
+      <a class="btn-gradient" href="login.html">تسجيل الدخول</a>
     </article>
   </section>
 
-  <!-- تحليلات الصفحة الرئيسية -->
-  <section class="grid-home" aria-label="تحليلات الصفحة الرئيسية">
-    <!-- الإيرادات + الإشغال -->
-    <article class="card">
-      <header class="table-head"><h2>الإيرادات الشهرية</h2></header>
-      <div class="chart-wrap"><canvas id="chart-monthly-revenue" aria-label="الإيرادات الشهرية"></canvas></div>
-      <header class="table-head"><h3>اتجاه الإشغال</h3></header>
-      <div class="chart-wrap"><canvas id="chart-occupancy-trend" aria-label="اتجاه الإشغال"></canvas></div>
-      <div class="table-wrap">
-        <table class="modar-table" id="tbl-revenue-summary">
-          <thead>
-            <tr>
-              <th>الشهر</th><th>الإيراد (ر.س)</th><th>التغير %</th><th>ملاحظات</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </article>
-
-    <!-- التذاكر حسب الفئة -->
-    <article class="card">
-      <header class="table-head"><h2>التذاكر حسب الفئة</h2></header>
-      <div class="chart-wrap"><canvas id="chart-tickets-by-category" aria-label="التذاكر حسب الفئة"></canvas></div>
-      <div class="table-wrap">
-        <table class="modar-table" id="tbl-tickets-category">
-          <thead>
-            <tr>
-              <th>الفئة</th><th>عدد التذاكر</th><th>النسبة %</th><th>ملاحظة</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </article>
-  </section>
 </main>
 
 <!-- الفوتر -->
@@ -115,9 +133,62 @@
   </div>
 </footer>
 
-<!-- Charts & home bindings -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin="anonymous"></script>
-<script src="assets/js/home-charts.js?v=1"></script>
+<div id="logout-bar" class="logout-bar" hidden>
+  <div class="logout-wrap">
+    <span id="login-state">تم تسجيل الدخول</span>
+    <button id="btn-logout" class="btn-logout">تسجيل الخروج</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const menuBtn = document.getElementById('btn-menu');
+  const menu = document.getElementById('util-menu');
+  const loginBtn = document.getElementById('btn-login');
+  const logoutBar = document.getElementById('logout-bar');
+  const logoutBtn = document.getElementById('btn-logout');
+  const stateEl = document.getElementById('login-state');
+
+  function refreshAuth(){
+    try{
+      const ok = localStorage.getItem('modar-auth') === 'true';
+      if (ok){
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (logoutBar){ logoutBar.hidden = false; stateEl && (stateEl.textContent = 'مرحباً، ' + (localStorage.getItem('modar-user')||'مستخدم')); }
+      } else {
+        if (loginBtn) loginBtn.style.display = '';
+        if (logoutBar) logoutBar.hidden = true;
+      }
+    }catch(_){}
+  }
+
+  refreshAuth();
+
+  if (menuBtn && menu){
+    menuBtn.addEventListener('click', ()=>{
+      const open = menu.hasAttribute('hidden') ? false : true;
+      if (open){ menu.setAttribute('hidden',''); menuBtn.setAttribute('aria-expanded','false'); }
+      else { menu.removeAttribute('hidden'); menuBtn.setAttribute('aria-expanded','true'); }
+    });
+    document.addEventListener('click', (e)=>{ if (menu && !menu.contains(e.target) && e.target !== menuBtn) { menu.setAttribute('hidden',''); menuBtn.setAttribute('aria-expanded','false'); }});
+  }
+
+  if (logoutBtn){
+    logoutBtn.addEventListener('click', ()=>{
+      try{
+        localStorage.removeItem('modar-auth');
+        localStorage.removeItem('modar-user');
+      }catch(_){}
+      refreshAuth();
+      window.location.href = 'login.html';
+    });
+  }
+})();
+</script>
+
+<script src="assets/js/app.js"></script>
+
+<!-- removed side-rail script -->
 
 </body>
 </html>
